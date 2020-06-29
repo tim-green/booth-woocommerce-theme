@@ -532,59 +532,67 @@ function booth_woo_hide_single_featured_save_post( $post_id ) {
 				'cookies' => '<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . ' /> ' .
 							 '<label for="wp-comment-cookies-consent">' . __( 'Save my name, email, and website in this browser for the next time I comment.', 'my-theme' ) . '</label></p>',
 			);
+if ( ! function_exists( 'booth_woo_get_template_part' ) ) :
+/*
+ * Load a template part into a template, optionally passing an associative array that will be available as variables.
+ 
+ Makes it easy for a theme to reuse sections of code in a easy to overload way for child themes.
+ 
+ Includes the named template part for a theme or if a name is specified then a specialised part will be included. If the theme contains no {slug}.php file then no template will be included.
+ 
+ The template is included using require, not require_once, so you may include the same template part multiple times.
+ 
+ For the $name parameter, if the file is called "{slug}-special.php" then specify "special".
+ 
+ When $data is an array, the key of each value becomes the name of the variable, and the value becomes the variable's value.
+ 
+ $data_overwrite should be one of the extract() flags, as described in http://www.php.net/extract
+ 
+ * @uses locate_template()
+ * @uses do_action() Calls 'get_template_part_{$slug}' action.
+ * @uses do_action() Calls 'ci_get_template_part_{$slug}' action.
+ * @param string $slug The slug name for the generic template.
+ * @param string $name The name of the specialised template.
+ * @param array $data A key-value array of data to be available as variables.
+ * @param int $data_overwrite The EXTR_* constant to pass to extract( $data ).
+ */
 
-			$fields = apply_filters( 'comment_form_default_fields', $fields );
-			$defaults = array(
-				'fields'               => $fields,
-				'comment_field'        => '<div class="form-group"><textarea id="comment" name="comment" class="form-control" aria-required="true" required placeholder="' . __( 'Comment', 'my-theme' ) . ( $req ? '*' : '' ) . '"></textarea></div>',
-				/** This filter is documented in wp-includes/link-template.php */
-				'must_log_in'          => '<p class="must-log-in">' . sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.', 'my-theme' ), wp_login_url( apply_filters( 'the_permalink', get_the_permalink( get_the_ID() ) ) ) ) . '</p>',
-				/** This filter is documented in wp-includes/link-template.php */
-				'logged_in_as'         => '<p class="logged-in-as">' . sprintf( __( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>', 'my-theme' ), get_edit_user_link(), $user->display_name, wp_logout_url( apply_filters( 'the_permalink', get_the_permalink( get_the_ID() ) ) ) ) . '</p>',
-				'comment_notes_before' => '',
-				'comment_notes_after'  => '<p class="small comment-notes">' . __( 'Your Email address will not be published.', 'my-theme' ) . '</p>',
-				'id_form'              => 'commentform',
-				'id_submit'            => 'submit',
-				'class_submit'         => 'btn btn-primary',
-				'name_submit'          => 'submit',
-				'title_reply'          => '',
-				'title_reply_to'       => __( 'Leave a Reply to %s', 'my-theme' ),
-				'cancel_reply_link'    => __( 'Cancel reply', 'my-theme' ),
-				'label_submit'         => __( 'Post Comment', 'my-theme' ),
-				'submit_button'        => '<input type="submit" id="%2$s" name="%1$s" class="%3$s" value="%4$s" />',
-				'submit_field'         => '<div class="form-submit">%1$s %2$s</div>',
-				'format'               => 'html5',
-			);
+ function booth_woo_get_template_part( $slug, $name = null, $data = array(), $data_overwrite = EXTR_PREFIX_SAME ) {
+	// Code similar to get_template_part() as of WP v4.9.8
 
-			return $defaults;
+	// Retain the same action hook, so that calls to our function respond to the same hooked functions.
+	do_action( "get_template_part_{$slug}", $slug, $name );
 
-		}
-		add_filter( 'comment_form_defaults', 'themes_starter_custom_commentform' );
+	// Add our own action hook, so that we can hook using $data also.
+	do_action( "ci_get_template_part_{$slug}", $slug, $name, $data );
 
-	endif;
+	$templates = array();
+	$name      = (string) $name;
 
-
-	/**
-	 * Nav menus
-	 *
-	 * @since v1.0
-	 */
-	if ( function_exists( 'register_nav_menus' ) ) {
-		register_nav_menus( array(
-			'main-menu' => 'Main Navigation Menu',
-			'footer-menu' => 'Footer Menu',
-		) );
+	if ( '' !== $name ) {
+		$templates[] = "{$slug}-{$name}.php";
 	}
 
-	// Custom Nav Walker: wp_bootstrap4_navwalker()
-	$custom_walker = get_template_directory() . '/inc/wp_bootstrap_navwalker.php';
-	if ( is_readable( $custom_walker ) ) {
-		require_once $custom_walker;
+	$templates[] = "{$slug}.php";
+
+	// Don't load the template ( it would normally call load_template() )
+	$_template_file = locate_template( $templates, false, false );
+
+	// Code similar to load_template()
+	global $posts, $post, $wp_did_header, $wp_query, $wp_rewrite, $wpdb, $wp_version, $wp, $id, $comment, $user_ID;
+
+	if ( is_array( $wp_query->query_vars ) ) {
+		extract( $wp_query->query_vars, EXTR_SKIP );
 	}
 
-	$custom_walker_footer = get_template_directory() . '/inc/wp_bootstrap_navwalker_footer.php';
-	if ( is_readable( $custom_walker_footer ) ) {
-		require_once $custom_walker_footer;
+	if ( is_array( $data ) and ( count( $data ) > 0 ) ) {
+		extract( $data, $data_overwrite, 'imp' );
+	}
+
+	require( $_template_file );
+}
+endif;
+
 	}
 
 
