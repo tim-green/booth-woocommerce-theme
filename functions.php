@@ -134,281 +134,146 @@ function booth_woo_has_sidebar() {
 }
 endif;
 
-	/**
-	 * General Theme Settings
-	 *
-	 * @since v1.0
-	 */
-	if ( ! function_exists( 'themes_starter_setup_theme' ) ) :
-		function themes_starter_setup_theme() {
+if ( ! function_exists( 'booth_woo_get_layout_info' ) ) :
+/*
+ Return appropriate layout information.
+ */
+function booth_woo_get_layout_info() {
+	$has_sidebar = booth_woo_has_sidebar();
 
-			// Make theme available for translation: Translations can be filed in the /languages/ directory
-			load_theme_textdomain( 'my-theme', get_template_directory() . '/languages' );
+	$classes = array(
+		'container_classes' => $has_sidebar ? 'col-lg-9 col-12' : 'col-xl-8 col-lg-10 col-12',
+		'sidebar_classes'   => $has_sidebar ? 'col-lg-3 col-12' : '',
+		'content_width'     => 960,
+		'has_sidebar'       => $has_sidebar,
+	);
 
-			// Theme Support
-			add_theme_support( 'title-tag' );
-			add_theme_support( 'automatic-feed-links' );
-			add_theme_support( 'post-thumbnails' );
-			add_theme_support( 'html5', array(
-				'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
-			) );
-
-			// Add support for Block Styles.
-			add_theme_support( 'wp-block-styles' );
-			// Add support for full and wide align images.
-			add_theme_support( 'align-wide' );
-			// Add support for editor styles.
-			add_theme_support( 'editor-styles' );
-			// Enqueue editor styles.
-			add_editor_style( 'style-editor.css' );
-
-			// Date/Time Format
-			$theme_dateformat = get_option( 'date_format' );
-			$theme_timeformat = 'H:i';
-
-			// Default Attachment Display Settings
-			update_option( 'image_default_align', 'none' );
-			update_option( 'image_default_link_type', 'none' );
-			update_option( 'image_default_size', 'large' );
-
-			// Custom CSS-Styles of Wordpress Gallery
-			add_filter( 'use_default_gallery_style', '__return_false' );
-
-		}
-		add_action( 'after_setup_theme', 'themes_starter_setup_theme' );
-	endif;
-
-
-	/**
-	 * Fire the wp_body_open action.
-	 *
-	 * Added for backwards compatibility to support pre 5.2.0 WordPress versions.
-	 *
-	 * @since v2.2
-	 */
-	if ( ! function_exists( 'wp_body_open' ) ) :
-		function wp_body_open() {
-			/**
-			 * Triggered after the opening <body> tag.
-			 *
-			 * @since v2.2
-			 */
-			do_action( 'wp_body_open' );
-		}
-	endif;
-
-
-	/**
-	 * Add new User fields to Userprofile
-	 *
-	 * @since v1.0
-	 */
-	if ( ! function_exists( 'themes_starter_add_user_fields' ) ) :
-		function themes_starter_add_user_fields( $fields ) {
-			// Add new fields
-			$fields['facebook_profile'] = 'Facebook URL';
-			$fields['twitter_profile'] = 'Twitter URL';
-			$fields['linkedin_profile'] = 'LinkedIn URL';
-			$fields['xing_profile'] = 'Xing URL';
-			$fields['github_profile'] = 'GitHub URL';
-
-			return $fields;
-		}
-		add_filter( 'user_contactmethods', 'themes_starter_add_user_fields' ); // get_user_meta( $user->ID, 'facebook_profile', true );
-	endif;
-
-
-	/**
-	 * Test if a page is a blog page
-	 * if ( is_blog() ) { ... }
-	 *
-	 * @since v1.0
-	 */
-	function is_blog() {
-		global $post;
-		$posttype = get_post_type( $post );
-		
-		return ( ( is_archive() || is_author() || is_category() || is_home() || is_single() || ( is_tag() && ( 'post' === $posttype ) ) ) ? true : false );
+	$sidebar_option = '';
+	if ( is_singular() ) {
+		$sidebar_option = get_post_meta( get_queried_object_id(), 'booth_woo_sidebar', true );
 	}
 
+	if ( class_exists( 'WooCommerce' ) && is_woocommerce() ) {
 
-	/**
-	 * Get the page number
-	 *
-	 * @since v1.0
-	 */
-	function get_page_number() {
-		if ( get_query_var( 'paged' ) ) {
-			print ' | ' . __( 'Page ' , 'my-theme') . get_query_var( 'paged' );
-		}
-	}
-
-
-	/**
-	 * Disable comments for Media (Image-Post, Jetpack-Carousel, etc.)
-	 *
-	 * @since v1.0
-	 */
-	function themes_starter_filter_media_comment_status( $open, $post_id = null ) {
-		$media_post = get_post( $post_id );
-		if ( 'attachment' === $media_post->post_type ) {
-			return false;
-		}
-		return $open;
-	}
-	add_filter( 'comments_open', 'themes_starter_filter_media_comment_status', 10, 2 );
-
-
-	/**
-	 * Style Edit buttons as badges: http://getbootstrap.com/components/#badges
-	 *
-	 * @since v1.0
-	 */
-	function themes_starter_custom_edit_post_link( $output ) {
-		$output = str_replace( 'class="post-edit-link"', 'class="post-edit-link badge badge-secondary"', $output );
-		return $output;
-	}
-	add_filter( 'edit_post_link', 'themes_starter_custom_edit_post_link' );
-
-
-	/**
-	 * Responsive oEmbed filter: http://getbootstrap.com/components/#responsive-embed
-	 *
-	 * @since v1.0
-	 */
-	function themes_starter_oembed_filter( $html ) {
-		$return = '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
-		return $return;
-	}
-	add_filter( 'embed_oembed_html', 'themes_starter_oembed_filter', 10, 4 );
-
-
-	if ( ! function_exists( 'themes_starter_content_nav' ) ) :
-		/**
-		 * Display a navigation to next/previous pages when applicable
-		 *
-		 * @since v1.0
-		 */
-		function themes_starter_content_nav( $nav_id ) {
-			global $wp_query;
-
-			if ( $wp_query->max_num_pages > 1 ) : ?>
-				<div id="<?php echo $nav_id; ?>" class="d-flex mb-4 justify-content-between">
-					<div><?php next_posts_link( '<span aria-hidden="true">&larr;</span> ' . __( 'Older posts', 'my-theme' ) ); ?></div>
-					<div><?php previous_posts_link( __( 'Newer posts', 'my-theme' ) . ' <span aria-hidden="true">&rarr;</span>' ); ?></div>
-				</div><!-- /.d-flex -->
-			<?php
-			else :
-				echo '<div class="clearfix"></div>';
-			endif;
-		}
-
-		// Add Class
-		function posts_link_attributes() {
-			return 'class="btn btn-secondary"';
-		}
-		add_filter( 'next_posts_link_attributes', 'posts_link_attributes' );
-		add_filter( 'previous_posts_link_attributes', 'posts_link_attributes' );
-
-	endif; // content navigation
-
-
-	/**
-	 * Modify Next/Previous Post output
-	 *
-	 * @since v2.0
-	 */
-	function post_link_attributes( $output ) {
-		$class = 'class="btn btn-outline-secondary"';
-		return str_replace( '<a href=', '<a ' . $class . ' href=', $output );
-	}
-	add_filter( 'next_post_link', 'post_link_attributes' );
-	add_filter( 'previous_post_link', 'post_link_attributes' );
-
-
-	/**
-	 * Init Widget areas in Sidebar
-	 *
-	 * @since v1.0
-	 */
-	function themes_starter_widgets_init() {
-		// Area 1
-		register_sidebar( array(
-			'name' => 'Primary Widget Area (Sidebar)',
-			'id' => 'primary_widget_area',
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>',
-		) );
-
-		// Area 2
-		register_sidebar( array(
-			'name' => 'Secondary Widget Area (Header Navigation)',
-			'id' => 'secondary_widget_area',
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>',
-		) );
-
-		// Area 3
-		register_sidebar( array(
-			'name' => 'Third Widget Area (Footer)',
-			'id' => 'third_widget_area',
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>',
-		) );
-	}
-	add_action( 'widgets_init', 'themes_starter_widgets_init' );
-
-
-	if ( ! function_exists( 'themes_starter_article_posted_on' ) ) :
-		/**
-		 * "Theme posted on" pattern
-		 * 
-		 * @since v1.0
-		 */
-		function themes_starter_article_posted_on() {
-			global $theme_dateformat, $theme_timeformat;
-
-			printf( __( '<span class="sep">Posted on </span><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author-meta vcard"><a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span></span>', 'my-theme' ),
-				esc_url( get_the_permalink() ),
-				esc_attr( get_the_date( $theme_dateformat ) . ' - ' . get_the_time( $theme_timeformat ) ),
-				esc_attr( get_the_date( 'c' ) ),
-				esc_html( get_the_date( $theme_dateformat ) . ' - ' . get_the_time( $theme_timeformat ) ),
-				esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-				esc_attr( sprintf( __( 'View all posts by %s', 'my-theme' ), get_the_author() ) ),
-				get_the_author()
+		if ( is_product() ) {
+			$classes = array(
+				'container_classes' => 'col-12',
+				'sidebar_classes'   => '',
+				'content_width'     => 740,
+				'has_sidebar'       => false,
 			);
-
+		} else {
+			$classes = array(
+				'container_classes' => 'col-lg-9 col-12',
+				'sidebar_classes'   => 'col-lg-3 col-12',
+				'content_width'     => 960,
+				'has_sidebar'       => $has_sidebar,
+			);
 		}
-	endif;
+	} 
+	
+	elseif ( is_singular() ) {
+		if ( 'none' === get_post_meta( get_the_ID(), 'booth_woo_sidebar', true ) ) {
+			$classes = array(
+				'container_classes' => 'col-xl-8 col-lg-10 col-12',
+				'sidebar_classes'   => '',
+				'content_width'     => 960,
+				'has_sidebar'       => false,
+			);
+		}
+	}
 
+	$classes['row_classes'] = '';
+	if ( is_singular() ) {
+		if ( ! $has_sidebar || 'none' === $sidebar_option ) {
+			$classes['row_classes'] = 'justify-content-center';
+		} elseif ( 'left' === $sidebar_option ) {
+			$classes['row_classes'] = 'flex-row-reverse';
+		}
+	} elseif ( class_exists( 'WooCommerce' ) && ( is_shop() || is_product_taxonomy() ) ) {
+		$classes['row_classes'] = 'flex-row-reverse';
+	} elseif ( ! $has_sidebar ) {
+		$classes['row_classes'] = 'justify-content-center';
+	}
+	return apply_filters( 'booth_woo_layout_info', $classes, $has_sidebar );
+}
+endif;
 
-	/**
-	 * Template for Password protected post form
-	 * 
-	 * @since v1.0
-	 */
-	function themes_starter_password_form() {
-		global $post;
-		$label = 'pwbox-' . ( empty( $post->ID ) ? rand() : $post->ID );
+add_filter( 'tiny_mce_before_init', 'booth_woo_insert_wp_editor_formats' );
+function booth_woo_insert_wp_editor_formats( $init_array ) {
+	$style_formats = array(
+		array(
+			'title'   => esc_html__( 'Intro text (big text)', 'booth-woo' ),
+			'block'   => 'div',
+			'classes' => 'entry-content-intro',
+			'wrapper' => true,
+		),
+		array(
+			'title'   => esc_html__( '2 Column Text', 'booth-woo' ),
+			'block'   => 'div',
+			'classes' => 'entry-content-column-split',
+			'wrapper' => true,
+		),
+	);
 
-		$output = '<div class="row">';
-			$output .= '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" method="post">';
-			$output .= '<h4 class="col-md-12 alert alert-warning">' . __( 'This content is password protected. To view it please enter your password below.', 'my-theme' ) . '</h4>';
-				$output .= '<div class="col-md-6">';
-					$output .= '<div class="input-group">';
-						$output .= '<input type="password" name="post_password" id="' . $label . '" placeholder="' . __( 'Password', 'my-theme' ) . '" class="form-control" />';
-						$output .= '<div class="input-group-append"><input type="submit" name="submit" class="btn btn-primary" value="' . esc_attr( __( 'Submit', 'my-theme' ) ) . '" /></div>';
-					$output .= '</div><!-- /.input-group -->';
-				$output .= '</div><!-- /.col -->';
-			$output .= '</form>';
-		$output .= '</div><!-- /.row -->';
-		return $output;
+	$init_array['style_formats'] = wp_json_encode( $style_formats );
+
+	return $init_array;
+}
+
+add_filter( 'mce_buttons_2', 'booth_woo_mce_buttons_2' );
+function booth_woo_mce_buttons_2( $buttons ) {
+	array_unshift( $buttons, 'styleselect' );
+
+	return $buttons;
+}
+
+add_action( 'admin_init', 'booth_woo_admin_setup_hide_single_featured' );
+function booth_woo_admin_setup_hide_single_featured() {
+	if ( current_theme_supports( 'booth-woo-hide-single-featured' ) ) {
+		$hide_featured_support = get_theme_support( 'booth-woo-hide-single-featured' );
+		$hide_featured_support = $hide_featured_support[0];
+
+		foreach ( $hide_featured_support as $supported_post_type ) {
+			add_meta_box( 'booth-woo-single-featured-visibility', esc_html__( 'Featured Image Visibility', 'booth-woo' ), 'booth_woo_single_featured_visibility_metabox', $supported_post_type, 'side', 'default' );
+		}
+	}
+
+	add_action( 'save_post', 'booth_woo_hide_single_featured_save_post' );
+}
+
+add_action( 'init', 'booth_woo_setup_hide_single_featured' );
+function booth_woo_setup_hide_single_featured() {
+	if ( current_theme_supports( 'booth-woo-hide-single-featured' ) ) {
+		add_filter( 'get_post_metadata', 'booth_woo_hide_single_featured_get_post_metadata', 10, 4 );
+	}
+}
+
+function booth_woo_single_featured_visibility_metabox( $object, $box ) {
+	$fieldname = 'booth_woo_hide_single_featured';
+	$checked   = get_post_meta( $object->ID, $fieldname, true );
+
+	?>
+		<input type="checkbox" id="<?php echo esc_attr( $fieldname ); ?>" class="check" name="<?php echo esc_attr( $fieldname ); ?>" value="1" <?php checked( $checked, 1 ); ?> />
+		<label for="<?php echo esc_attr( $fieldname ); ?>"><?php esc_html_e( "Hide when viewing this post page", 'booth-woo' ); ?></label>
+	<?php
+	wp_nonce_field( 'booth_woo_hide_single_featured_nonce', '_booth_woo_hide_single_featured_meta_box_nonce' );
+}
+
+function booth_woo_hide_single_featured_get_post_metadata( $value, $post_id, $meta_key, $single ) {
+	$hide_featured_support = get_theme_support( 'booth-woo-hide-single-featured' );
+	$hide_featured_support = $hide_featured_support[0];
+
+	if ( ! in_array( get_post_type( $post_id ), $hide_featured_support, true ) ) {
+		return $value;
+	}
+
+	if ( '_thumbnail_id' === $meta_key && ( is_single( $post_id ) || is_page( $post_id ) ) && get_post_meta( $post_id, 'booth_woo_hide_single_featured', true ) ) {
+		return false;
+	}
+	return $value;
+}
+
 function booth_woo_hide_single_featured_save_post( $post_id ) {
 	$hide_featured_support = get_theme_support( 'booth-woo-hide-single-featured' );
 	$hide_featured_support = $hide_featured_support[0];
