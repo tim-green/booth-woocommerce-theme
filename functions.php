@@ -84,15 +84,63 @@ if (! function_exists('booth_setup')):
 	if ( ! has_filter( 'get_the_author_description', 'wpautop' ) ) {
 		add_filter( 'get_the_author_description', 'wpautop' );
 	}
+}
+endif;
+add_action( 'after_setup_theme', 'booth_woo_setup' );
 
+/*
+	Set the content width in pixels, based on the theme's design and stylesheet.
+	
+	Priority 0 to make it available to lower priority callbacks.
 
-	/**
-	 * Include Support for wordpress.com-specific functions.
-	 * 
-	 * @since v1.0
-	 */
-	$theme_wordpresscom = get_template_directory() . '/inc/wordpresscom.php';
-	if ( is_readable( $theme_wordpresscom ) ) {
+	* @global int $content_width
+ */
+function booth_woo_content_width(){
+	$content_width = $GLOBALS['content_width'];
+
+	if (is_page_template ('template/full-width-page.php' )
+	|| is_page_template( 'templates/front-page.php' )
+	|| is_page_template( 'templates/builder.php' )
+	|| is_page_template( 'templates/builder-contained.php' )
+	) {
+		$content_width = 1290;
+	} 
+	elseif ( is_singular() || is_home() || is_archive() ) {
+		$info          = booth_woo_get_layout_info();
+		$content_width = $info['content_width'];
+	}
+
+	$GLOBALS['content_width'] = apply_filters( 'booth_woo_content_width', $content_width );
+}
+add_action( 'template_redirect', 'booth_woo_content_width', 0 );
+
+add_filter( 'wp_page_menu', 'booth_woo_wp_page_menu', 10, 2 );
+
+function booth_woo_wp_page_menu( $menu, $args ) {
+	$menu = preg_replace( '#^<div .*?>#', '', $menu, 1 );
+	$menu = preg_replace( '#</div>$#', '', $menu, 1 );
+	$menu = preg_replace( '#^<ul>#', '<ul id="' . esc_attr( $args['menu_id'] ) . '" class="' . esc_attr( $args['menu_class'] ) . '">', $menu, 1 );
+	return $menu;
+}
+
+if ( ! function_exists( 'booth_woo_get_columns_classes' ) ) :
+	function booth_woo_get_columns_classes( $columns ) {
+		switch ( intval( $columns ) ) {
+			case 1:
+				$classes = 'col-12';
+				break;
+			case 2:
+				$classes = 'col-sm-6 col-12';
+				break;
+			case 3:
+				$classes = 'col-lg-4 col-sm-6 col-12';
+				break;
+			case 4:
+			default:
+				$classes = 'col-xl-3 col-lg-4 col-sm-6 col-12';
+				break;
+		}
+
 		return apply_filters( 'booth_woo_get_columns_classes', $classes, $columns );
 	}
 endif;
