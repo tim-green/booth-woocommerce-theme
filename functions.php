@@ -619,6 +619,10 @@ endif;
 
 		wp_enqueue_script( 'bootstrapjsCDN', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', false, $theme_version, true );
 		wp_enqueue_script( 'popperCDN', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', false, $theme_version, true );
+/**
+ * Common theme features.
+ */
+require_once get_theme_file_path( '/common/common.php' );
 
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
