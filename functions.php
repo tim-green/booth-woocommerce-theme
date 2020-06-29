@@ -497,6 +497,10 @@ function booth_woo_hide_single_featured_save_post( $post_id ) {
 			endswitch;
 
 		}
+	if ( isset( $_POST['_booth_woo_hide_single_featured_meta_box_nonce'] ) && wp_verify_nonce( sanitize_key( $_POST['_booth_woo_hide_single_featured_meta_box_nonce'] ), 'booth_woo_hide_single_featured_nonce' ) ) {
+		update_post_meta( $post_id, 'booth_woo_hide_single_featured', isset( $_POST['booth_woo_hide_single_featured'] ) ); // Input var okay.
+	}
+}
 
 		/**
 		 * Custom Comment form
