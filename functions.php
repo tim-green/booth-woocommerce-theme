@@ -625,3 +625,58 @@ endif;
 		}
 	}
 	add_action( 'wp_enqueue_scripts', 'themes_starter_scripts_loader' );
+/**
+ * Scripts and styles.
+ */
+require_once get_theme_file_path( '/inc/scripts-styles.php' );
+
+/**
+ * Template tags.
+ */
+require_once get_theme_file_path( '/inc/template-tags.php' );
+
+/**
+ * Sanitization functions.
+ */
+require_once get_theme_file_path( '/inc/sanitization.php' );
+
+/**
+ * Hooks.
+ */
+require_once get_theme_file_path( '/inc/default-hooks.php' );
+
+/**
+ * Sidebars and widgets.
+ */
+require_once get_theme_file_path( '/inc/sidebars-widgets.php' );
+
+/**
+ * Customizer controls.
+ */
+require_once get_theme_file_path( '/inc/customizer.php' );
+
+/**
+ * Various helper functions, so that this functions.php is cleaner.
+ */
+require_once get_theme_file_path( '/inc/helpers.php' );
+
+/**
+ * WooCommerce related code.
+ */
+require_once get_theme_file_path( '/inc/woocommerce.php' );
+
+/**
+ * MaxSlider related code.
+ */
+require_once get_theme_file_path( '/inc/maxslider.php' );
+
+/**
+ * SCSS Colors reader.
+ */
+require_once get_theme_file_path( '/inc/class-scss-colors.php' );
+
+/**
+ * Presentational custom fields for pages.
+ */
+require_once get_theme_file_path( '/inc/custom-fields-page.php' );
+?>
