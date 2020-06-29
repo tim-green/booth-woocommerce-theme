@@ -409,6 +409,12 @@ endif;
 			$output .= '</form>';
 		$output .= '</div><!-- /.row -->';
 		return $output;
+function booth_woo_hide_single_featured_save_post( $post_id ) {
+	$hide_featured_support = get_theme_support( 'booth-woo-hide-single-featured' );
+	$hide_featured_support = $hide_featured_support[0];
+
+	if ( ! in_array( get_post_type( $post_id ), $hide_featured_support, true ) ) {
+		return;
 	}
 	add_filter( 'the_password_form', 'themes_starter_password_form' );
 
