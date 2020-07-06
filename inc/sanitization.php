@@ -24,7 +24,7 @@ function booth_woo_sanitize_intval_or_empty( $input ) {
  * Return a list of allowed tags and attributes for a given context.
  *
  * @param string $context The context for which to retrieve tags.
- *                        Currently available contexts: guide
+ * Currently available contexts: guide
  * @return array List of allowed tags and their allowed attributes.
  */
 function booth_woo_get_allowed_tags( $context = '' ) {
