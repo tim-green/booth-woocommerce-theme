@@ -5,105 +5,97 @@
 
 */
 
-/**
- * Add custom Bootstrap styles
- */
+// Grid
+// Variables used by Bootstrap Grid (v4)
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1350px
+) !default;
 
-// Bootstrap 4 Customization options: https://getbootstrap.com/docs/4.0/getting-started/theming/#sass-options
-/*
-// Options
-$enable-rounded:            true !default;
-$enable-shadows:            false !default;
-$enable-gradients:          false !default;
-$enable-transitions:        true !default;
-$enable-hover-media-query:  false !default;
-$enable-grid-classes:       true !default;
-$enable-print-styles:       true !default;
+$container-max-widths: (
+	sm: 540px,
+	md: 720px,
+	lg: 940px,
+	xl: 1320px
+) !default;
 
-$spacer:                    1rem !default;
+$grid-columns: 12 !default;
+$grid-gutter-width-base: 30px !default;
+$grid-gutter-widths: (
+	xs: $grid-gutter-width-base,
+	sm: $grid-gutter-width-base,
+	md: $grid-gutter-width-base,
+	lg: $grid-gutter-width-base,
+	xl: $grid-gutter-width-base
+) !default;
 
-// Grayscale vars
-$gray-100: #f8f9fa !default;
-$gray-200: #e9ecef !default;
-$gray-300: #dee2e6 !default;
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #868e96 !default;
-$gray-700: #495057 !default;
-$gray-800: #343a40 !default;
-$gray-900: #212529 !default;
+// WordPress Galleries gutter widths
+$grid-gutter-widths-galleries: (
+	xs: $grid-gutter-width-base / 3,
+	sm: $grid-gutter-width-base / 3,
+	md: $grid-gutter-width-base / 3,
+	lg: $grid-gutter-width-base / 3,
+	xl: $grid-gutter-width-base / 3
+) !default;
 
-// Color vars
-$blue:    #007bff !default;
-$indigo:  #6610f2 !default;
-$purple:  #6f42c1 !default;
-$pink:    #e83e8c !default;
-$red:     #dc3545 !default;
-$orange:  #fd7e14 !default;
-$yellow:  #ffc107 !default;
-$green:   #28a745 !default;
-$teal:    #20c997 !default;
-$cyan:    #17a2b8 !default;
+// Base Generic
+$font-size-base: 16px !default;
+$line-height-base: 1.5 !default;
+$border-radius-base: 3px !default;
+$letter-spacing-base: -.01em !default;
 
-// Fonts
-$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
-$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
-$font-family-monospace:   Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
-$font-family-base:        $font-family-sans-serif !default;
-*/
+// Hero
+$hero-home-height-lg: 300px !default;
+$hero-home-height-md: 300px !default;
+$hero-home-height-sm: 300px !default;
 
+$hero-height-xl: 300px !default;
+$hero-height-lg: 250px !default;
+$hero-height-md: 200px !default;
+$hero-height-sm: 150px !default;
+
+// Sections & Spacing
+$section-padding-lg: 70px !default;
+$section-padding-md: 50px !default;
+$section-padding-sm: 35px !default;
+
+$widget-margin-lg: 60px !default;
+$widget-margin-md: 50px !default;
+$widget-margin-sm: 40px !default;
 
 // Colours
+$white: #fff !default;
+$black: #000 !default;
+$grey: #F5F5F5 !default;
+$red: #ff786d !default;
+$green: #a4ecd3 !default;
+$green-dark: #0D9502 !default;
+$blue: #54b5f7 !default;
 
-$color-primary: #000;
+$body-bg: $white !default;
+$accent-color: #F08804 !default;
+$text-color: #4A4A4A !default;
+$secondary-text-color: #00A8DE !default;
+$tertiary-text-color: #B12704 !default;
+$text-color-dark: #394E64 !default;
+$text-color-light: #8E8E8E !default;
+$text-on-accent: $white !default;
+$border-color: #DDDDDD !default;
+$border-color-dark: #CCCCCC !default;
 
-//Black
-$black: #000;
-$medium-black: #1d1d1d;
-$darker-gray: #272727;
-$dark-gray:#101010;
-$medium-gray: #888;
-$light-gray: #d1d1d1;
+$button-bg-color: $accent-color !default;
+$button-text-color: $text-on-accent !default;
+$button-border-color: transparent !default;
 
-//White
-$white: #fff;
+$dark-background: #283848 !default;
+$darker-background: #212F3D !default;
+$border-on-dark: rgba(white, .1) !default;
 
-//Red
-$soft-red: #dc535b;
-$medium-red: #c9373f;
-
-//Blue
-$aqua: #00add0;
-//Purple
-$magenta: #930f5b;
-
-// Base
-
-$base-line-height: 1.7;
-
-//Google font
-@import url(http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700italic,400,700);
-
-//Typekit font
-
-//Fonts
-$font-stack: Helvetica, sans-serif;
-$roboto-slab: 'Roboto Slab', serif;   
-$open-sans: 'Open Sans', sans-serif;
-
-// Weights
-$hairline-weight: 100;
-$thin-weight:     200;
-$light-weight:    300;
-$normal-weight:   400;
-$medium-weight:   500;
-$semibold-weight: 600;
-$bold-weight:     700;
-$xbold-weight:    800;
-$black-weight:    900;
-
-//Text Transform
-$text-cap: capitalize; 
-$text-lower: lowercase;
-$text-upper: uppercase;
-$text-none: none;
+// Fonts
+$primary-font: "Source Sans Pro", sans-serif;
+$secondary-font: $primary-font;
+$font-awesome: "Font Awesome 5 Free";
+$font-awesome-brands: "Font Awesome 5 Brands"
