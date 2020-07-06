@@ -23,7 +23,18 @@ module.exports = function(grunt) {
         files: {
           'assets/build/app.min.css': [
               'assets/sass/app.scss'
-          ]
+          ],
+          'common/css/global.css': [
+            'common/css/global.scss'
+        ]
+        ,
+          'admin/css/repeating-fields.css': [
+            'admin/css/repeating-fields.scss'
+        ]
+        ,
+          'admin/css/widgets.css': [
+            'admin/css/widgets.scss'
+        ]
         }
       }
     },
@@ -73,7 +84,7 @@ module.exports = function(grunt) {
 
   // Load tasks
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  //grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
