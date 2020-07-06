@@ -31,7 +31,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'assets/build/app.min.js': [
-            'assets/js/app.js'
+            'assets/js/**/*.js'
           ]
         },
         options: {
@@ -46,15 +46,16 @@ module.exports = function(grunt) {
       },
       sass: {
         files: [
-          'assets/sass/**/*.scss'
+          'assets/sass/**/*.scss', 'admin/css/**/*.scss', 'common/css/**/*.scss'
         ],
         tasks: ['sass']
       },
       js: {
         files: [
+          'assets/js/plugins/**/*.js',
           'assets/js/**/*.js'
         ],
-        tasks: ['jshint', 'uglify']
+        tasks: ['uglify']
       },
       html: {
         files: [
