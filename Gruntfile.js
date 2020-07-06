@@ -2,16 +2,17 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc'
-      },
-      all: [
-        'Gruntfile.js',
-        'assets/js/**/*.js',
-        '!assets/build/app.min.js'
-      ]
-    },
+    // jshint: {
+    //   options: {
+    //     jshintrc: '.jshintrc'
+    //   },
+    //   all: [
+    //     'Gruntfile.js',
+    //     'assets/js/**/*.js',
+    //     'assets/js/plugins/**/*.js',
+    //     '!assets/build/app.min.js'
+    //   ]
+    // },
     sass: {
       dist: {
         options: {
