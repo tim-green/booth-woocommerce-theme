@@ -76,6 +76,32 @@
     @include text-hide;
   }
   
+  // Margins
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+  
+      .m#{$infix}-auto { margin: auto !important; }
+      .mt#{$infix}-auto,
+      .my#{$infix}-auto {
+        margin-top: auto !important;
+      }
+      .mr#{$infix}-auto,
+      .mx#{$infix}-auto {
+        margin-right: auto !important;
+      }
+      .mb#{$infix}-auto,
+      .my#{$infix}-auto {
+        margin-bottom: auto !important;
+      }
+      .ml#{$infix}-auto,
+      .mx#{$infix}-auto {
+        margin-left: auto !important;
+      }
+    }
+  }
+  
+  // Responsive visibility utilities
   @each $bp in map-keys($grid-breakpoints) {
     .hidden-#{$bp}-up {
       @include media-breakpoint-up($bp) {
