@@ -207,4 +207,28 @@
      margin-top: 60px;
    }
    
- }
+ }/* WordPress Classes*/
+
+/* Alignment */
+.alignnone {
+	margin: 5px 0 20px;
+
+	p & {
+		margin-bottom: 0;
+	}
+}
+
+.aligncenter {
+	display: block;
+	margin: 7px auto;
+}
+
+.alignright {
+	float: right;
+	margin: 7px 0 7px 24px;
+}
+
+.alignleft {
+	float: left;
+	margin: 7px 24px 7px 0;
+}
