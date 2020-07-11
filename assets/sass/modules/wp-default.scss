@@ -5,209 +5,89 @@
 
 */
 
- /**
-  * General
-  */
- 
- img {
-   max-width: 100% !important;
-   height: auto;
-   vertical-align: middle;
- }
- 
- 
- /**
-  * WP Customisation
-  */
- 
- 
- /* If WP-Adminbar is visible */
- body.admin-bar {
-   
-   #header.fixed-top {
-     top: 32px;
-   }
-   
-   .edit-link a {
-     color: #FFF !important;
-     font-weight: normal !important;
-     text-decoration: none !important;
-     
-     &::before {
-       content: '\270E';
-       display: inline-block;
-       margin-right: 5px;
-     }
-     
-   }
- }
- 
- /* WordPress Embeds */
- 
- .post-thumbnail,
- .wp-video,
- .embed-responsive {
-   margin: 5px 0;
-   width: 100% !important;
- }
- 
- 
- /* Header */
- 
- .navbar-brand {
-   
-   img {
-     height: 40px;
-   }
-   
- }
- 
- .navbar-static-top {
-   margin-bottom: $grid-gutter-width;
- }
- 
- 
- /* Main */
- 
- #main {
-   margin-top: $spacer;
- }
- 
- 
- /* Footer */
- 
- #footer {
-   background-color: #FFF;
- 
-   p {
-     margin-top: 10px;
-   }
- 
-   .menu-item {
-     &.active,
-     &.current-menu-item,
-     &.current_page_item {
-       a {
-         color: $link-hover-color;
-       }
-     }
-   }
-   
- }
- 
- 
- /* Sidebar */
- 
- .widget-area {
-   
-   ul {
-     list-style: none;
-     padding: 0;
-   }
-   
- }
- 
- 
- /* Author */
- 
- .author-avatar {
-   
-   .avatar {
-     width: 64px;
-     height: auto;
-   }
- }
- 
- .author-info {
-   margin: 40px 0;
- 
-   h2, h3 {
-     margin-top: 0;
-   }
-   
- }
- 
- 
- /* Posts */
- 
- .sticky {
-   .card {
-     background-color: $gray-100;
-   }
- }
- 
- .entry-meta {
-   font-size: small;
-   margin-top: ($grid-gutter-width/2);
- }
- 
- .single {
-   .entry-content,
-   .post-navigation,
-   #comments-title {
-     margin: $grid-gutter-width 0;
-   }
- }
- 
- #comments {
-   margin-top: $grid-gutter-width;
- }
- 
- .comment-meta {
-   height: 40px;
- }
- 
- .comment-reply-title {
-   margin: $grid-gutter-width 0 ($grid-gutter-width/2)-gutter-width;
- }
- 
- .commentlist {
-   list-style: none;
-   margin: 0 auto;
-   width: 68.9%;
-     
-   > li.comment {
-     margin: 0 0 1.625em;
-     padding: 1.625em;
-     position: relative;
-   }
- 
-   .children {
-     list-style: none;
-     margin-top: 20px;
- 
-     > li.comment {
-       border-top: 1px solid $gray-300;
-       padding-top: 10px;
-       position: relative;
-     }
-   }
- 
-   .avatar {
-     width: 64px;
-     height: 64px;
-     border-radius: 50%;
-     box-shadow: 0 1px 2px $gray-600;
-     padding: 0;
-     position: absolute;
-     top: 0;
-     left: -102px;
-   }
-   
- }
- 
- 
- /**
-  * Responsive Design using "mixins/_breakpoints.scss"
-  */
- 
- @media (max-width: breakpoint-max(sm)) {
-   
-   #sidebar {
-     margin-top: 60px;
-   }
-   
- }/* WordPress Classes*/
+ /* WordPress Galleries*/
+.gallery {
+	@include make-row($grid-gutter-widths-galleries);
+	margin: 40px 0;
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.gallery-item {
+	margin-bottom: 10px;
+
+	img {
+		border-radius: $border-radius-base;
+		width: 100%;
+		max-width: 100%;
+	}
+
+	&:hover {
+		.gallery-caption {
+			opacity: 1;
+		}
+	}
+}
+
+@for $i from 1 through 9 {
+	.gallery-columns-#{$i} {
+		.gallery-item {
+			@include make-col-ready($grid-gutter-widths-galleries);
+			@include make-col(12 / $i);
+
+			@if $i > 5 {
+				@include media-breakpoint-down(md) {
+					@include make-col(4);
+				}
+			}
+
+			@include media-breakpoint-down(sm) {
+				@include make-col(6);
+			}
+		}
+	}
+}
+
+.gallery-caption {
+	background-color: rgba($black, .7);
+	color: $white;
+	font-size: 12px;
+	line-height: 1.5;
+	margin: 0 0 0 5px;
+	max-height: 50%;
+	opacity: 0;
+	padding: 6px 8px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	text-align: left;
+	width: calc(100% - 10px);
+	transition: opacity .18s ease;
+
+	&::before {
+		content: "";
+		height: 100%;
+		min-height: 49px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+	}
+}
+
+.gallery-columns-6,.gallery-columns-7,.gallery-columns-8,.gallery-columns-9 {
+	.gallery-caption {
+		display: none;
+	}
+}
+
+/* WordPress Classes*/
 
 /* Alignment */
 .alignnone {
