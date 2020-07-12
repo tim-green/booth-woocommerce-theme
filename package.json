@@ -17,10 +17,10 @@
     "grunt-contrib-sass": "^1.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.4",
+    "autoprefixer": "^9.8.5",
     "bootstrap": "^4.5.0",
     "cssnano": "^4.1.10",
-    "grunt": "^1.1.0",
+    "grunt": "^1.2.1",
     "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-imagemin": "^4.0.0",
     "grunt-contrib-jshint": "^2.1.0",
