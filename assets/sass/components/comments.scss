@@ -46,3 +46,23 @@
 .post-comments {
 	margin: 0 0 45px;
 }
+
+.comment-author {
+	.fn {
+		font-size: 18px;
+		font-weight: 400;
+	}
+
+	.avatar {
+		width: 80px;
+		height: 80px;
+		float: left;
+		margin: 0 15px 15px 0;
+		overflow: visible;
+		border-radius: 3px;
+
+		@include media-breakpoint-down(xs) {
+			display: none;
+		}
+	}
+}
