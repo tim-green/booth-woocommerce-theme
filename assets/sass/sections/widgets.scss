@@ -322,3 +322,12 @@
 		border-bottom-left-radius: 0;
 	}
 }
+
+/* Widget: #Text Widget */
+.widget_text {
+	p {
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
