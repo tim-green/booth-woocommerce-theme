@@ -10,4 +10,19 @@ body{
   margin: 0;
   font: 14px/20px sans-serif;
   color: $color-primary;
+// Reset the box-sizing
+html {
+	box-sizing: border-box;
+	-ms-overflow-style: scrollbar; 
+	-webkit-tap-highlight-color: rgba($black, 0);
+}
+
+* {
+	box-sizing: inherit;
+	&::before,
+	&::after {
+		box-sizing: inherit;
+	}
+}
+
 }
