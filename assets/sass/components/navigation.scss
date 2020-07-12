@@ -13,3 +13,20 @@
 	}
 }
 
+.navigation-main {
+	@include clearfix;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	line-height: normal;
+
+	// Apply top margin to the full-width menu to keep it more distanced from the logo
+	@at-root {
+		.head-mast {
+			[class^="col-lg-12"]  {
+				.navigation-main {
+					margin-top: 10px;
+				}
+			}
+		}
+	}
