@@ -12,6 +12,8 @@ get_header(); ?>
 ?>
 
 <main id="site-content" class="main widget-sections">
+	<?php the_content();?>
+	
 	<?php dynamic_sidebar( 'frontpage' ); ?>
 </main>
 
