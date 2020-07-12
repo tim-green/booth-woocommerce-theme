@@ -169,3 +169,18 @@
 	}
 }
 
+/* Breadcrumbs*/
+.breadcrumb,.woocommerce-breadcrumb {
+	padding-bottom: 15px;
+	border-bottom: 1px solid $border-color;
+	margin-bottom: 45px;
+	color: $text-color-light;
+
+	a {
+		color: $text-color-dark;
+	}
+
+	> span {
+		margin: 0 6px;
+	}
+}
