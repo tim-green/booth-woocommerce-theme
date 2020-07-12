@@ -145,3 +145,27 @@
 	}
 }
 
+.onsale {
+	z-index: 10;
+	position: absolute;
+	top: 0;
+	right: 0;
+	text-transform: uppercase;
+	font-size: 13px;
+	text-align: center;
+	background-color: $accent-color;
+	padding: 3px 12px;
+	color: $text-on-accent;
+
+	.item & {
+		border-top-right-radius: $border-radius-base;
+		top: 15px;
+		right: 15px;
+	}
+
+	.images & {
+		right: auto;
+		border-top-left-radius: $border-radius-base;
+	}
+}
+
