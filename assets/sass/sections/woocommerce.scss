@@ -4,3 +4,15 @@
   +
 
 */
+.demo_store {
+	position: fixed;
+	bottom: 0;
+	z-index: 150;
+	width: 100%;
+	background-color: $grey;
+	border-top: 1px solid $border-color;
+	text-align: center;
+	margin: 0;
+	line-height: normal;
+	padding: 15px 25px;
+}
