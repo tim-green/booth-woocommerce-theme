@@ -5,8 +5,6 @@
 
 */
 
-.footer{
-  padding: 0 30px 150px;
 footer {
 	color: $white;
 }
@@ -33,4 +31,14 @@ footer {
 		padding: $section-padding-sm 0 $section-padding-sm - $widget-margin-sm;
 	}
 }
+
+.footer-info {
+	padding: 10px 0;
+	font-size: 14px;
+	background-color: $darker-background;
+	color: $white;
+}
+
+.footer-copy {
+	margin-bottom: 0;
 }
