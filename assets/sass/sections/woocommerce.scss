@@ -1724,6 +1724,24 @@ button {
 	font-size: 13px;
 }
 
+/* Block: Search*/
+.wc-block-product-search__fields {
+	position: relative;
+
+	.wc-block-product-search__button {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		height: 100%;
+
+		&:hover {
+			// Using !important here as WooCommerce is using terribly specific selectors (with :not).
+			background: none !important;
+			box-shadow: none !important;
+			border: 0;
+		}
+	}
+}
 /* Block: Product Categories */
 .wc-block-product-categories-list {
 	list-style: none;
