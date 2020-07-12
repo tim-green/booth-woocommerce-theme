@@ -97,3 +97,51 @@
 		}
 	}
 }
+
+.woocommerce-message {
+	@include media-breakpoint-down(sm) {
+		padding-bottom: 45px;
+
+		.button {
+			float: none;
+			position: absolute;
+			display: block;
+			padding: 0;
+			left: 45px;
+			bottom: 15px;
+			margin: 0;
+		}
+	}
+}
+
+.woocommerce-error {
+	list-style: none;
+	border-left-color: $red;
+
+	li {
+		display: block;
+	}
+}
+
+.woocommerce-info {
+	list-style: none;
+	border-left-color: $blue;
+
+	li {
+		display: block;
+	}
+
+	&:before {
+		content: "\f05a";
+	}
+}
+
+.woocommerce-noreviews {
+	padding-left: 20px;
+	border-left-color: rgba(0,0,0,.15);
+
+	&:before {
+		display: none;
+	}
+}
+
