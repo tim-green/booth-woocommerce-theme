@@ -9,6 +9,13 @@ if (! defined('Booth_Whitelabel')){
 	define('Booth_Whitelabel', false);
 }
 
+$menus = array(
+	'menu-1' => esc_html__( 'Main Menu', 'booth-woo' ),
+	'menu-2' => esc_html__( 'Main Menu - Right side', 'booth-woo' ),
+);
+register_nav_menus( $menus );
+
+
 if (! function_exists('booth_setup')):
 
 	/*
@@ -36,12 +43,6 @@ if (! function_exists('booth_setup')):
 
 	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support( 'post-thumbnails' );
-
-	$menus = array(
-		'menu-1' => esc_html__( 'Main Menu', 'booth-woo' ),
-		'menu-2' => esc_html__( 'Main Menu - Right side', 'booth-woo' ),
-	);
-	register_nav_menus( $menus );
 
 	// Switch default core markup for search form, comment form, and comments to output valid HTML5.
 	add_theme_support( 'html5', apply_filters( 'booth_woo_add_theme_support_html5', array(
