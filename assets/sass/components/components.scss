@@ -757,3 +757,78 @@
 		}
 	}
 }
+
+/* Social Icons*/
+.list-social-icons, .list-card-icons {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		display: inline-block;
+		margin: 3px;
+	}
+}
+
+.social-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	font-size: 14px;
+	text-align: center;
+	color: $text-color-dark;
+	border: 2px solid $border-color;
+	border-radius: 50%;
+
+	&:hover {
+		border-color: $accent-color;
+		color: $accent-color;
+	}
+
+	.header & {
+		color: inherit;
+		font-size: inherit;
+	}
+
+	.footer-info-addons & {
+		color: $white;
+		font-size: 24px;
+		border: 0;
+	}
+
+	.footer-widgets & {
+		color: $white;
+		border-color: $border-on-dark;
+	}
+
+	.entry-author-socials & {
+		border: 0;
+		padding: 0;
+		width: auto;
+		height: auto;
+		font-size: 18px;
+		color: $secondary-text-color;
+	}
+}
+
+.entry-social-share {
+	text-align: center;
+
+	@include media-breakpoint-up(lg) {
+		li {
+			display: block;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		text-align: left;
+		margin-bottom: 30px;
+	}
+}
+
+.entry-social-share-title {
+	margin-bottom: 10px;
+}
+
