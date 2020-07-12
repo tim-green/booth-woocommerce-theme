@@ -14,3 +14,16 @@
 	font-size: 26px;
 }
 
+.comment-list,.commentlist {
+	margin: 0;
+	list-style: none;
+	padding: 0;
+
+	.children {
+		list-style: none;
+
+		@include media-breakpoint-down(sm) {
+			margin: 0;
+			padding: 0;
+		}
+	}
