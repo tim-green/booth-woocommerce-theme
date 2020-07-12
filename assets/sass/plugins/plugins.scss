@@ -9,3 +9,26 @@
 .sharedaddy {
 	margin-top: 30px;
 }
+
+/* WP Instagram */
+.null-instagram-feed {
+	p {
+		padding-top: 10px;
+	}
+}
+
+.instagram-pics {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+
+	li {
+		width: 33.33333333333%;
+
+		a {
+			display: block;
+			color: $text-color;
+		}
+	}
