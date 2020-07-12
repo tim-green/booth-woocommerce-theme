@@ -35,6 +35,13 @@ html {
 [hidden] {
   display: none !important;
 }
+
+img {
+	display: inline-block;
+	vertical-align: middle;
+	max-width: 100%;
+	height: auto;
+}
 a {
 	transition: color .18s ease, background-color .18s ease, border-color .18s ease;
 	color: $secondary-text-color;
