@@ -40,17 +40,6 @@
 
 /*
 
- ==== Components ====
-
-*/
-
-@import "components/components";
-@import "components/navigation";
-@import "components/hero";
-@import "components/comments";
-
-/*
-
  ==== Sections ====
 
 */
@@ -60,6 +49,19 @@
 @import "sections/footer";
 @import "sections/widgets";
 @import "sections/woocommerce";
+
+/*
+
+ ==== Components ====
+
+*/
+
+@import "components/components";
+@import "components/navigation";
+@import "components/hero";
+@import "components/comments";
+
+
 
 /*
 
