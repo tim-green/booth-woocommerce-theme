@@ -14,4 +14,19 @@
   h1{
     margin: 0 0 30px;
   }
+.header {
+	position: relative;
+	padding: 0;
+	z-index: 20;
+}
+
+.header-fullwidth {
+	@include media-breakpoint-up(xl) {
+		.container,
+		.head-mast-container {
+			width: 1600px;
+		}
+	}
+}
+
 }
