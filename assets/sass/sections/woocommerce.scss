@@ -745,3 +745,38 @@ button {
 	}
 }
 
+/* Star Ratings*/
+.star-rating {
+	overflow: hidden;
+	display: inline-block;
+	position: relative;
+	height: 1em;
+	line-height: 1em;
+	font-size: 12px;
+	width: 68px;
+	color: $accent-color;
+
+	&::before {
+		@include font-awesome(\f005\f005\f005\f005\f005, 'regular');
+		float: left;
+		top: 0;
+		left: 0;
+		position: absolute;
+	}
+
+	span {
+		overflow: hidden;
+		float: left;
+		top: 0;
+		left: 0;
+		position: absolute;
+		padding-top: 1.5em;
+
+		&::before {
+			@include font-awesome(\f005\f005\f005\f005\f005, 'solid');
+			top: 0;
+			position: absolute;
+			left: 0;
+		}
+	}
+}
