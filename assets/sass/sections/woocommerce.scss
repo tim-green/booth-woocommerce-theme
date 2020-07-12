@@ -45,3 +45,29 @@
 		}
 	}
 }
+
+.woocommerce-message,.woocommerce-error,.woocommerce-info,.woocommerce-noreviews {
+	padding: 14px 20px 14px 55px;
+	background-color: $grey;
+	margin-bottom: 30px;
+	margin-left: 0;
+	clear: both;
+	border-left: .618em solid $green;
+	position: relative;
+
+	@include media-breakpoint-down(sm) {
+		font-size: 14px;
+	}
+
+	&::before {
+		@include font-awesome(\f058);
+		position: absolute;
+		left: 15px;
+		top: 10px;
+		font-size: 1.4em;
+	}
+
+	a:not(.button) {
+		border-bottom: 1px solid;
+		color: $text-color-dark;
+	}
