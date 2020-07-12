@@ -185,3 +185,22 @@
 	}
 }
 
+.entry-thumb {
+	margin-bottom: 50px;
+
+	@include media-breakpoint-down(md) {
+		margin-bottom: 30px;
+	}
+
+	img {
+		border-radius: $border-radius-base;
+		border: 1px solid $border-color;
+	}
+
+	&.alignnone,
+	&.alignleft,
+	&.alignright,
+	&.aligncenter {
+		margin-top: 0;
+	}
+}
