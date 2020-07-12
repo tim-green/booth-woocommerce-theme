@@ -23,3 +23,28 @@
 		margin-top: 80px;
 	}
 }
+
+/* Sections*/
+.widget-section {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	margin-bottom: $section-padding-lg;
+
+	@include media-breakpoint-down(md) {
+		margin-bottom: $section-padding-md;
+	}
+
+	@include media-breakpoint-down(sm) {
+		margin-bottom: $section-padding-sm;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.widget-section-parallax {
+	background-attachment: fixed;
+}
