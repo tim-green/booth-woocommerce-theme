@@ -1724,6 +1724,65 @@ button {
 	font-size: 13px;
 }
 
+/* Block: Product Categories */
+.wc-block-product-categories-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+
+	ul {
+		margin-left: 15px;
+	}
+
+	li {
+		line-height: normal;
+		display: block;
+		position: relative;
+
+		a {
+			display: block;
+			color: $text-color;
+			padding: 11px 30px 11px 0;
+			border-bottom: 1px solid $border-color;
+
+			&:hover {
+				color: $accent-color;
+			}
+		}
+
+		.wc-block-product-categories-list-item-count {
+			position: absolute;
+			right: 0;
+			top: 11px;
+		}
+	}
+}
+
+.wc-block-product-categories {
+	&.is-dropdown {
+		display: flex;
+
+		.wc-block-product-categories__dropdown {
+			flex: auto;
+		}
+
+		select {
+			width: 100%;
+		}
+
+		.wc-block-product-categories__button {
+			border: 1px solid $border-color;
+			border-left: 0;
+			border-radius: 0;
+			padding: 6px;
+
+			&:hover {
+				box-shadow: none;
+			}
+		}
+	}
+}
 
 /* Block: Filter by Price*/
 .wp-block-woocommerce-price-filter {
