@@ -31,4 +31,18 @@ html {
 		outline: none !important;
 	}
 }
+a {
+	transition: color .18s ease, background-color .18s ease, border-color .18s ease;
+	color: $secondary-text-color;
+	text-decoration: none;
+
+	&:hover {
+		color: lighten($secondary-text-color, 10%);
+		text-decoration: none;
+	}
+
+	&:focus {
+		outline: 1px dotted $accent-color;
+	}
+}
 }
