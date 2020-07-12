@@ -27,3 +27,18 @@
 			padding: 0;
 		}
 	}
+
+	.comment-body {
+		margin-bottom: 20px;
+		padding-top: 20px;
+	}
+
+	> .comment {
+		&:first-child {
+			> .comment-body {
+				border-top: 0;
+				padding-top: 0;
+			}
+		}
+	}
+}
