@@ -54,4 +54,22 @@
 		display: none;
 	}
 }
+
+.head-mast {
+	background-color: $darker-background;
+	padding: 30px 0;
+	color: $white;
+
+	@include media-breakpoint-down(md) {
+		padding: 15px 0;
+	}
+
+	@include media-breakpoint-down(sm) {
+		padding: 0;
+	}
+}
+
+.head-nav {
+	background-color: $dark-background;
+}
 }
