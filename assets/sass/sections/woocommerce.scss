@@ -1724,3 +1724,56 @@ button {
 	font-size: 13px;
 }
 
+
+/* Block: Filter by Price*/
+.wp-block-woocommerce-price-filter {
+	h3 {
+		line-height: normal;
+		font-size: 18px;
+	}
+}
+
+.wc-block-price-filter {
+	.wc-block-price-filter__range-input-wrapper {
+		.wc-block-price-filter__range-input-progress {
+			--range-color: $border-color;
+		}
+	}
+
+	.wc-block-price-filter__controls {
+		.wc-block-price-filter__amount {
+			border-radius: 0;
+			height: auto;
+			padding: 7px 14px;
+			text-align: center;
+			margin-top: 10px;
+		}
+	}
+
+	.wc-block-price-filter__range-input {
+		&::-webkit-slider-thumb {
+			@include wc-price-thumb;
+			margin: -6px 0 0 0;
+		}
+
+		&::-moz-range-thumb {
+			@include wc-price-thumb;
+		}
+
+		&::-ms-thumb {
+			@include wc-price-thumb;
+		}
+
+		&:focus {
+			&::-webkit-slider-thumb {
+				@include wc-price-thumb-focus;
+			}
+			&::-moz-range-thumb {
+				@include wc-price-thumb-focus;
+			}
+			&::-ms-thumb {
+				@include wc-price-thumb-focus;
+			}
+		}
+	}
+}
