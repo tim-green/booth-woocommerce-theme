@@ -1239,3 +1239,280 @@ button {
 	font-size: 12px;
 }
 
+/* Checkout Page */
+.woocommerce-checkout {
+	.woocommerce-info {
+		margin-bottom: 20px;
+	}
+
+	.login {
+		@include clearfix;
+		margin-bottom: 30px;
+
+		.form-row-first,.form-row-last {
+			@include media-breakpoint-up(md) {
+				float: left;
+				width: 49%;
+				margin-right: 2%;
+			}
+		}
+
+		.form-row-last {
+			margin-right: 0;
+		}
+
+		.button {
+			@include button-sm;
+		}
+
+		.woocommerce-form__label-for-checkbox {
+			display: inline-block;
+			margin-left: 10px;
+		}
+	}
+
+	.checkout_coupon {
+		margin-bottom: 30px;
+	}
+}
+
+#customer-details {
+	margin: 0 0 25px;
+}
+
+.woocommerce-billing-fields__field-wrapper, .woocommerce-shipping-fields__field-wrapper {
+	@include media-breakpoint-up(sm) {
+		@include make-row($grid-gutter-widths);
+	}
+}
+
+.woocommerce-billing-fields, .woocommerce-shipping-fields, .woocommerce-additional-field {
+	p {
+		@include media-breakpoint-up(sm) {
+			@include make-col-ready($grid-gutter-widths);
+			@include make-col(12);
+		}
+
+		margin: 0 0 15px;
+	}
+
+	.form-row-first,.form-row-last {
+		@include media-breakpoint-up(sm) {
+			@include make-col-ready($grid-gutter-widths);
+			@include make-col(6);
+		}
+	}
+
+	.input-text {
+		width: 100%;
+	}
+
+	abbr {
+		text-decoration: none;
+		border: none;
+	}
+}
+
+.woocommerce-shipping-fields {
+	.woocommerce-form__label-for-checkbox {
+		margin: 0;
+		display: flex;
+		align-items: center;
+
+		input {
+			margin: 0 10px 0 0;
+		}
+	}
+}
+
+#order_review_heading {
+	padding-top: 35px;
+	margin-top: 20px;
+	border-top: 2px solid $border-color;
+}
+
+#order_review .shop_table, .order_details {
+	td, th {
+		text-align: right;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.product-total {
+		text-align: right;
+	}
+
+	.product-name {
+		text-align: left;
+	}
+
+	.product-quantity {
+		font-weight: normal;
+	}
+
+	tfoot {
+		tr {
+			border: 0;
+		}
+
+		td, th {
+			padding: 9px 0 0;
+			text-align: right;
+			border: 0;
+		}
+	}
+}
+
+.wc_payment_methods {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 30px;
+}
+
+.wc_payment_method {
+	padding: 10px 0;
+	border-bottom: 1px solid $border-color;
+
+	label {
+		display: inline-block;
+		margin: 0 0 0 5px;
+	}
+}
+
+.payment_method_paypal {
+	img {
+		width: 100px;
+		margin: -2px 15px 0;
+	}
+}
+
+.about_paypal {
+	font-size: 12px;
+}
+
+.payment_box {
+	padding: 15px;
+	border: 1px solid $border-color;
+	margin: 5px 0 0;
+
+	p {
+		margin: 0;
+	}
+}
+
+.woocommerce-checkout-review-order-table, .woocommerce-table--order-details {
+	tfoot {
+		td {
+			width: 320px;
+			padding-left: 15px;
+
+			p {
+				margin: 0;
+				font-size: 14px;
+			}
+		}
+	}
+}
+
+.place-order {
+	@include media-breakpoint-up(sm) {
+		text-align: right;
+	}
+
+	.terms {
+		display: inline-block;
+		margin-left: 20px;
+
+		@include media-breakpoint-down(sm) {
+			margin: 5px 0 0;
+			display: block;
+		}
+	}
+
+	label[for="terms"] {
+		display: inline-block;
+		margin-right: 5px;
+	}
+}
+
+.select2-container {
+	.select2-selection--single {
+		border-color: $border-color-dark;
+		height: 35px;
+	}
+}
+
+.select2-search__field {
+	height: 32px;
+}
+
+.select2-container--default {
+	.select2-selection--single {
+		.select2-selection__rendered {
+			line-height: 35px;
+		}
+
+		.select2-selection__arrow {
+			height: 100%;
+		}
+	}
+
+	.select2-search--dropdown {
+		.select2-search__field {
+			border-color: $border-color-dark;
+		}
+	}
+}
+
+.select2-dropdown {
+	border-color: $border-color-dark;
+}
+
+/* Order Received Page */
+.woocommerce-order-received {
+	.customer_details {
+		padding: 25px;
+		border: 1px solid $border-color;
+
+		td, th {
+			border: 0;
+			padding: 0;
+		}
+	}
+}
+
+.woocommerce-thankyou-order-details,
+.wc-bacs-bank-details {
+	@include clearfix;
+	list-style: none;
+	margin: 15px 0 30px;
+	padding: 25px;
+	border: 1px solid $border-color;
+
+	li {
+		margin-bottom: 10px;
+
+		@include media-breakpoint-up(md) {
+			float: left;
+			width: 25%;
+			margin: 0;
+		}
+
+		strong {
+			display: block;
+			font-family: $secondary-font;
+		}
+	}
+}
+
+#wc-bacs-bank-details-heading {
+	margin-top: 30px;
+
+	+ h3 {
+		font-size: 14px;
+	}
+}
+
+.wc-bacs-bank-details {
+	margin-bottom: 30px;
+}
