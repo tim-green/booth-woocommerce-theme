@@ -48,3 +48,16 @@
 .widget-section-parallax {
 	background-attachment: fixed;
 }
+
+.section-padded {
+	padding-top: $section-padding-lg;
+	position: relative;
+
+	@include media-breakpoint-down(md) {
+		padding-top: $section-padding-md;
+	}
+
+	@include media-breakpoint-down(sm) {
+		padding-top: $section-padding-sm;
+	}
+}
