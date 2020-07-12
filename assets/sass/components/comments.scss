@@ -97,3 +97,16 @@
 		color: $text-color-light;
 	}
 }
+
+.comment-reply-link {
+	font-size: 10px;
+	text-transform: uppercase;
+	padding: 4px 10px;
+	margin-left: 94px;
+	height: auto;
+	width: auto;
+
+	@include media-breakpoint-down(sm) {
+		margin: 0;
+	}
+}
