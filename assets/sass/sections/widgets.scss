@@ -64,3 +64,73 @@
 	}
 }
 
+/* Widget: #Widget - Home Newsletter */
+.widget_tg-home-newsletter {
+	padding: 0;
+	background-color: $darker-background;
+
+	@include media-breakpoint-down(md) {
+		padding: 0;
+	}
+
+	@include media-breakpoint-down(sm) {
+		padding: 0;
+	}
+}
+
+.widget-newsletter-wrap {
+	padding: 30px 0;
+}
+
+.widget-newsletter-content-wrap {
+	display: flex;
+	align-items: center;
+
+	.fas,
+	.far {
+		color: $accent-color;
+		font-size: 38px;
+		line-height: 1;
+		flex: none;
+		margin-right: 15px;
+	}
+}
+
+.widget-newsletter-content {
+	line-height: normal;
+	color: $secondary-text-color;
+
+	h2 {
+		color: $white;
+		margin-bottom: 0;
+		font-weight: 900;
+	}
+
+	p {
+		margin-bottom: 0;
+	}
+}
+
+.widget-newsletter-form {
+	position: relative;
+	height: 40px;
+
+	@include media-breakpoint-down(md) {
+		margin-top: 20px;
+	}
+
+	button {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+		padding: 0 25px;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+
+	input[type="email"] {
+		height: 100%;
+	}
+}
+
