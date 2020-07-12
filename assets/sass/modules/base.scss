@@ -25,4 +25,10 @@ html {
 	}
 }
 
+// Suppress the focus outline on elements that cannot be accessed via keyboard.
+[tabindex="-1"] {
+  &:focus {
+		outline: none !important;
+	}
+}
 }
