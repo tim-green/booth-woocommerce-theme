@@ -71,3 +71,29 @@
 		border-bottom: 1px solid;
 		color: $text-color-dark;
 	}
+
+	.button {
+		float: right;
+		padding: 5px 10px;
+		line-height: normal;
+		font-style: normal;
+		font-weight: normal;
+		color: inherit;
+		background: none;
+		position: relative;
+		text-decoration: none;
+		text-align: left;
+		text-transform: uppercase;
+		font-size: 0.875em;
+		border: 0;
+
+		&::after {
+			@include font-awesome(\f061);
+			font-size: 0.65em;
+			display: inline-block;
+			margin: 0 0 0 5px;
+			position: relative;
+			top: -2px;
+		}
+	}
+}
