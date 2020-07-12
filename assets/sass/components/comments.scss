@@ -140,3 +140,34 @@
 	line-height: 1.5;
 	opacity: .75;
 }
+
+.form-submit {
+	margin-bottom: 0;
+}
+
+.no-comments {
+	border: 1px solid $border-color;
+	padding: 15px;
+	margin-top: 40px;
+	text-align: center;
+}
+
+.comment-form-cookies-consent {
+	line-height: normal;
+	display: flex;
+
+	label {
+		display: inline-block;
+		margin: 0 0 0 8px;
+	}
+}
+
+.comment-form {
+	> p {
+		margin: 0 0 20px;
+	}
+
+	.form-submit {
+		margin-top: 30px;
+	}
+}
