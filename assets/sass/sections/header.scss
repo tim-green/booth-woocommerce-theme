@@ -5,15 +5,6 @@
 
 */
 
-.header{
-  display: block;
-  padding: 150px 30px 0;
-  width: 420px;
-  max-width: 100%;
-
-  h1{
-    margin: 0 0 30px;
-  }
 .header {
 	position: relative;
 	padding: 0;
@@ -200,4 +191,41 @@ button.category-search-btn {
 		@include make-row;
 	}
 }
+
+.header-branding-wrap {
+	@include media-breakpoint-up(xl) {
+		@include make-col(2);
+	}
+
+	@include media-breakpoint-up(md) {
+		@include make-col-ready;
+		@include make-col(4);
+	}
+
+	@include media-breakpoint-down(md) {
+		display: flex;
+		align-items: center;
+	}
+
+	@include media-breakpoint-down(sm) {
+		padding: 15px;
+	}
+}
+
+.head-search-form-wrap {
+	@include media-breakpoint-up(xl) {
+		@include make-col(10);
+	}
+
+	@include media-breakpoint-up(md) {
+		@include make-col-ready;
+		@include make-col(8);
+	}
+
+	@include media-breakpoint-down(sm) {
+		padding: 15px 15px;
+		width: 100%;
+		flex: none;
+		background-color: $dark-background;
+	}
 }
