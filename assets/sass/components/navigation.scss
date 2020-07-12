@@ -30,6 +30,7 @@
 			}
 		}
 	}
+
 	// Functional Styles
 	li { position: relative; }
 	> li { display: inline-block; }
@@ -284,3 +285,111 @@
 	}
 }
 
+// Open the last sub-menu of the menu always, position will be on the left
+.navigation-main-right {
+	text-align: right;
+
+	> li:last-child {
+		ul {
+			right: 0;
+		}
+
+		ul ul {
+			left: auto;
+			right: 100%;
+		}
+
+		.menu-item-has-children > a {
+			&::after {
+				content: "\f0d9";
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+.navigation-secondary {
+	margin-left: auto;
+}
+
+
+/* Mobile nav, using mMenu */
+.mm-page {
+  position: static;
+}
+
+.mm-opened {
+  .mm-page {
+    position: relative;
+  }
+}
+
+.mm-listview {
+	> li {
+		&.fas, &.far, &.fab {
+			font-family: $primary-font;
+			font-weight: normal;
+			line-height: 1;
+			position: relative;
+			padding-left: 20px;
+			display: block;
+
+			&::before {
+				font-size: 0.85em;
+				position: absolute;
+				top: 47%;
+				transform: translateY(-50%);
+			}
+		}
+
+		&.fas {
+			&::before {
+				font-family: $font-awesome;
+				font-weight: 900;
+			}
+		}
+
+		&.far {
+			&::before {
+				font-family: $font-awesome;
+				font-weight: 400;
+			}
+		}
+
+		&.fab {
+			&::before {
+				font-family: $font-awesome-brands;
+				font-weight: 400;
+			}
+		}
+	}
+}
+
+#mobilemenu {
+	display: none;
+
+	@include media-breakpoint-down(md) {
+		display: block;
+	}
+}
+
+.mobile-nav-trigger {
+	text-transform: uppercase;
+	display: none;
+	width: 40px;
+	height: 40px;
+	border: 1px solid $border-on-dark;
+	border-radius: $border-radius-base;
+	align-items: center;
+	justify-content: center;
+	color: inherit;
+	margin-right: 10px;
+
+	&:hover {
+		color: inherit;
+	}
+
+	@include media-breakpoint-down(md) {
+		display: inline-flex;
+	}
+}
