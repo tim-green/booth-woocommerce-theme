@@ -19,20 +19,24 @@
 
 */
 
-
-@import "modules/mixins";
 @import "modules/variables";
-@import "modules/wp-default";
+@import "modules/grid";
+@import "modules/mixins";
 @import "modules/base";
+@import "modules/wp-default";
 @import "modules/typography";
-
+@import "modules/utilities";
+@import "modules/mediaqueries";
 /*
 
  ==== Plugins ====
 
 */
 
-
+@import "plugins/plugins";
+@import "plugins/maginific_settings";
+@import "plugins/alpha-color-picker";
+@import "plugins/mMenu";
 
 /*
 
@@ -40,7 +44,10 @@
 
 */
 
-
+@import "components/components";
+@import "components/navigation";
+@import "components/hero";
+@import "components/comments";
 
 /*
 
@@ -51,7 +58,8 @@
 @import "sections/header";
 @import "sections/main";
 @import "sections/footer";
-
+@import "sections/widgets";
+@import "sections/woocommerce";
 
 /*
 
