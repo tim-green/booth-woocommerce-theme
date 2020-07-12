@@ -5,3 +5,21 @@
 
 */
 
+/* General Layout*/
+.main {
+	padding: $section-padding-lg 0;
+
+	@include media-breakpoint-down(md) {
+		padding: $section-padding-md 0;
+	}
+
+	@include media-breakpoint-down(sm) {
+		padding: $section-padding-sm 0;
+	}
+}
+
+.sidebar {
+	@include media-breakpoint-down(md) {
+		margin-top: 80px;
+	}
+}
