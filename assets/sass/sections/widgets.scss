@@ -4,3 +4,19 @@
   +
 
 */
+
+.sidebar {
+	@include media-breakpoint-up(xl) {
+		margin-left: 30px;
+
+		.flex-row-reverse & {
+			margin-left: 0;
+			margin-right: 30px;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		padding: 0;
+		margin-top: 60px;
+	}
+}
