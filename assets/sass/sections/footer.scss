@@ -10,4 +10,12 @@
 footer {
 	color: $white;
 }
+
+.footer-fullwidth {
+	@include media-breakpoint-up(xl) {
+		.container {
+			width: 1600px;
+		}
+	}
+}
 }
