@@ -18,4 +18,19 @@ footer {
 		}
 	}
 }
+
+.footer-widgets {
+	background-color: $dark-background;
+	padding: $section-padding-lg 0 $section-padding-lg - $widget-margin-lg;
+	font-size: 14px;
+	line-height: 1.65;
+
+	@include media-breakpoint-down(md) {
+		padding: $section-padding-md 0 $section-padding-md - $widget-margin-md;
+	}
+
+	@include media-breakpoint-down(sm) {
+		padding: $section-padding-sm 0 $section-padding-sm - $widget-margin-sm;
+	}
+}
 }
