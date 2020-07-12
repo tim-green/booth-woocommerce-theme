@@ -662,6 +662,7 @@
 	margin-top: 15px;
 }
 
+/* Pagination*/
 .woocommerce-pagination {
 	margin: 30px 0 0;
 	background-color: $grey;
@@ -690,5 +691,69 @@
 	a:hover, // sass-lint:disable-line force-pseudo-nesting
 	.current {
 		color: $accent-color;
+	}
+}
+
+.navigation {
+	margin: 30px 0 0;
+	background-color: $grey;
+	border-radius: $border-radius-base;
+	padding: 10px;
+	text-align: center;
+
+	a,.page-numbers {
+		display: inline-block;
+		margin: 2px 6px;
+		color: $text-color-dark;
+	}
+
+	a:hover, // sass-lint:disable-line force-pseudo-nesting
+	.current {
+		color: $accent-color;
+	}
+
+	.nav-links {
+		@include clearfix;
+	}
+
+	.nav-previous {
+		float: left;
+	}
+
+	.nav-next {
+		float: right;
+	}
+}
+
+.comment-navigation {
+	margin: 30px 0;
+}
+
+.page-links {
+	margin: 30px 0 0;
+	background-color: $grey;
+	border-radius: $border-radius-base;
+	padding: 10px;
+	text-align: center;
+	clear: both;
+
+	.page-number {
+		display: inline-block;
+		margin: 2px 6px;
+		color: $text-color-dark;
+
+		&:hover {
+			color: $accent-color;
+		}
+	}
+
+	> .page-number {
+		color: $accent-color;
+	}
+
+	> a,	> span {
+		&:first-child {
+			margin-left: 10px;
+		}
 	}
 }
