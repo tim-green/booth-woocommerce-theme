@@ -301,3 +301,24 @@
 	}
 }
 
+/* Widget: #Search */
+.searchform {
+	> div {
+		position: relative;
+	}
+
+	input[type="text"],
+	input[type="search"] {
+		height: 40px;
+	}
+
+	.searchsubmit {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+		padding: 0 15px;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+}
