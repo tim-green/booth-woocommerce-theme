@@ -184,6 +184,7 @@
 		margin: 0 6px;
 	}
 }
+
 /* Shop Page*/
 .shop-actions {
 	display: flex;
@@ -883,3 +884,107 @@ button {
 	}
 }
 
+/* Reviews */
+.woocommerce-Reviews {
+	#comments {
+		margin: 0;
+
+		.woocommerce-Reviews-title {
+			margin: 0 0 20px;
+		}
+	}
+
+	.comment-text {
+		font-size: 14px;
+
+		p {
+			margin-bottom: 10px;
+		}
+	}
+
+	li {
+		margin-bottom: 20px;
+	}
+
+	.avatar {
+		width: 64px;
+		height: 64px;
+		float: left;
+		margin: 0 25px 15px 0;
+		overflow: visible;
+		border-radius: $border-radius-base;
+
+		@include media-breakpoint-down(sm) {
+			display: none;
+		}
+	}
+
+	.description {
+		overflow: hidden;
+	}
+
+	.meta {
+		font-size: 16px;
+	}
+
+	.star-rating {
+		float: right;
+	}
+
+	.comment-respond {
+		margin-top: 30px;
+	}
+}
+
+.comment-form-rating {
+	a {
+		display: inline-block;
+		position: relative;
+		width: 15px;
+		text-indent: -9999px;
+		border: none;
+		margin-right: 12px;
+		color: $accent-color;
+
+		&::after {
+			@include font-awesome(\f005, 'regular');
+			font-size: 13px;
+			opacity: 1;
+			display: inline-block;
+			text-indent: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		&.active {
+			&::after {
+				font-weight: 900;
+			}
+		}
+	}
+
+	@for $i from 2 through 5 {
+		$base: '\f005';
+		$base-content: $base;
+
+		.star-#{$i} {
+			width: #{13 * $i}px;
+
+			@for $j from 1 to $i {
+				$base-content: $base + $base-content;
+			}
+
+			&::after {
+				content: $base-content;
+				font-weight: 400;
+			}
+
+			&.active {
+				&::after {
+					font-weight: 900;
+				}
+			}
+		}
+	}
+}
