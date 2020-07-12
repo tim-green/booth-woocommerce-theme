@@ -5,11 +5,6 @@
 
 */
 
-body{
-  background: white; // Change to $color-primary
-  margin: 0;
-  font: 14px/20px sans-serif;
-  color: $color-primary;
 // Reset the box-sizing
 html {
 	box-sizing: border-box;
@@ -31,17 +26,19 @@ html {
 		outline: none !important;
 	}
 }
+
 // Always hide an element with the `hidden` HTML attribute 
 [hidden] {
   display: none !important;
 }
 
-img {
+img{
 	display: inline-block;
 	vertical-align: middle;
 	max-width: 100%;
 	height: auto;
 }
+
 a {
 	transition: color .18s ease, background-color .18s ease, border-color .18s ease;
 	color: $secondary-text-color;
@@ -57,8 +54,7 @@ a {
 	}
 }
 
-.group,
-.clear {
+.group, .clear {
 	@include clearfix;
 }
 
@@ -208,8 +204,7 @@ p,span {
 }
 
 // Remove max widths from potential Google Map embeds
-#map,
-.map {
+#map,.map {
 	* {
 		max-width: none !important;
 	}
