@@ -26,3 +26,22 @@
 		@include clearfix;
 	}
 }
+
+.woocommerce {
+	.col2-set {
+		@include media-breakpoint-up(md) {
+			@include make-row($grid-gutter-widths);
+		}
+
+		.col-1, .col-2 {
+			@include media-breakpoint-up(md) {
+				@include make-col-ready($grid-gutter-widths);
+				@include make-col(6);
+			}
+			@include media-breakpoint-down(md) {
+				@include make-col-ready($grid-gutter-widths);
+				@include make-col(12);
+			}
+		}
+	}
+}
