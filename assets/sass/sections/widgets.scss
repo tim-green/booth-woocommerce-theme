@@ -50,3 +50,17 @@
 	}
 }
 
+.widget-title {
+	font-size: 18px;
+	margin-bottom: 15px;
+
+	label {
+		text-transform: none;
+		display: block;
+		font-size: inherit;
+		margin: 0;
+		line-height: inherit;
+		font-weight: inherit;
+	}
+}
+
