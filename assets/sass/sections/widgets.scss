@@ -20,3 +20,33 @@
 		margin-top: 60px;
 	}
 }
+
+.widget {
+	margin: 0 0 $widget-margin-lg;
+
+	@include media-breakpoint-down(md) {
+		margin-bottom: $widget-margin-md;
+	}
+
+	@include media-breakpoint-down(sm) {
+		margin-bottom: $widget-margin-sm;
+	}
+
+	/* Nullify bottom margin for last elements in widgets and sidebars */
+	.sidebar & {
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	p {
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	select {
+		width: 100%;
+	}
+}
+
