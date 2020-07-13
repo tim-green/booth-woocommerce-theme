@@ -994,6 +994,16 @@ button {
 	td {
 		padding: 10px 5px;
 	}
+
+	.order-total th{
+		border-right: 0 !important;
+	}
+
+	.order-total{
+		background: $accent-color;
+		color: $white;
+		font-weight:bold;
+	}
 }
 
 // Styles specific to the cart table
