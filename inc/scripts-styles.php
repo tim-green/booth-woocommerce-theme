@@ -78,8 +78,7 @@ function booth_woo_register_scripts() {
 
 
 	wp_enqueue_script( 'fontawesome-kit', 'https://kit.fontawesome.com/c20cab8581.js', array(), '1.0.0', true );
-
-	wp_register_script( 'booth-woo-front-scripts', get_template_directory_uri() . '/assets/build/app.min.js', array('booth-woo-dependencies',), $theme->get( 'Version' ), true );
+	wp_enqueue_script( 'booth-woo-front-scripts', get_template_directory_uri() . '/assets/build/app.min.js', array(), '1.0.0', true );
 
 	$vars = array(
 		'ajaxurl' => admin_url( 'admin-ajax.php' ),
