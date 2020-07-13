@@ -18,3 +18,16 @@
 }
 
 
+//Accordion - elementor
+.elementor-tab-title{
+    background-color: $darker-background;
+}
+
+
+.elementor-widget-accordion .elementor-accordion-icon, .elementor-widget-accordion .elementor-accordion-title{
+    color: $white !important;
+}
+
+.elementor-widget-accordion .elementor-active .elementor-accordion-icon, .elementor-widget-accordion .elementor-active .elementor-accordion-title{
+    color: $accent-color !important;
+}
