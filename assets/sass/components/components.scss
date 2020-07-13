@@ -419,7 +419,15 @@
 
 		img {
 			border-radius: $border-radius-base;
+			transition: ease-out 2s;
+
+		&:hover {
+				filter: grayscale(100%);
+				transition: ease-in-out 1s;
+			}
 		}
+
+		
 
 		@include media-breakpoint-down(lg) {
 			width: 220px;
