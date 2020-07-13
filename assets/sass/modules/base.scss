@@ -41,11 +41,11 @@ img{
 
 a {
 	transition: color .18s ease, background-color .18s ease, border-color .18s ease;
-	color: $secondary-text-color;
+	color: $accent-color;
 	text-decoration: none;
 
 	&:hover {
-		color: lighten($secondary-text-color, 10%);
+		color: lighten($accent-color, 10%);
 		text-decoration: none;
 	}
 
