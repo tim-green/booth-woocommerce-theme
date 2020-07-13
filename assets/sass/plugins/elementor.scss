@@ -4,3 +4,9 @@
   +
 
 */
+
+//Widget - elementor
+.elementor-widget:not(:last-child){
+    margin-bottom: 0;
+}
+
