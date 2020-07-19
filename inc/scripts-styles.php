@@ -35,14 +35,10 @@ function booth_woo_fonts_url() {
 function booth_woo_register_scripts() {
 	$theme = wp_get_theme();
 
-	if ( ! wp_script_is( 'alpha-color-picker', 'enqueued' ) && ! wp_script_is( 'alpha-color-picker', 'registered' ) ) {
-		wp_register_script( 'alpha-color-picker', get_template_directory_uri() . '/assets/js/plugins/alpha-color-picker/alpha-color-picker.js', array('jquery','wp-color-picker',), '1.0.0', true );
-	}
-
 
 	if ( ! wp_script_is( 'booth-woo-plugin-post-meta', 'enqueued' ) && ! wp_script_is( 'booth-woo-plugin-post-meta', 'registered' ) ) {
-		wp_register_style( 'booth-woo-plugin-post-meta', get_template_directory_uri() . '/admin/css/post-meta.css', array('alpha-color-picker',), $theme->get( 'Version' ) );
-		wp_register_script( 'booth-woo-plugin-post-meta', get_template_directory_uri() . '/admin/js/post-meta.js', array('media-editor','jquery','jquery-ui-sortable','alpha-color-picker',), $theme->get( 'Version' ), true );
+		wp_register_style( 'booth-woo-plugin-post-meta', get_template_directory_uri() . '/admin/css/post-meta.css', array(), $theme->get( 'Version' ) );
+		wp_register_script( 'booth-woo-plugin-post-meta', get_template_directory_uri() . '/admin/js/post-meta.js', array('media-editor','jquery','jquery-ui-sortable'), $theme->get( 'Version' ), true );
 
 		$settings = array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -62,8 +58,6 @@ function booth_woo_register_scripts() {
 	wp_register_style('booth-woo-repeating-fields', get_template_directory_uri() . '/css/admin/repeating-fields.min.css', array(), $theme->get( 'Version' ) );
 	wp_register_script('booth-woo-repeating-fields', get_template_directory_uri() . '/js/admin/repeating-fields.js', array('jquery','jquery-ui-sortable',), $theme->get( 'Version' ), true );
 	wp_register_style('booth-woo-google-font', booth_woo_fonts_url(), array(), null );
-	wp_register_style('booth-woo-base', get_template_directory_uri() . '/css/base.css', array(), $theme->get( 'Version' ) );
-
 	wp_register_style('booth-woo-dependencies', false, array('booth-woo-google-font','booth-woo-base','booth-woo-common','mmenu','slick','font-awesome-5',), $theme->get( 'Version' ) );
 
 	if ( is_child_theme() ) {
@@ -78,12 +72,10 @@ function booth_woo_register_scripts() {
 
 
 	wp_enqueue_script( 'fontawesome-kit', 'https://kit.fontawesome.com/c20cab8581.js', array(), '1.0.0', true );
-	wp_enqueue_script( 'booth-woo-front-scripts', get_template_directory_uri() . '/assets/build/app.min.js', array(), '1.0.0', true );
-
 	$vars = array(
 		'ajaxurl' => admin_url( 'admin-ajax.php' ),
 	);
-	wp_localize_script( 'booth-woo-front-scripts', 'booth_woo_vars', $vars );
+	//wp_localize_script( 'booth-woo-front-scripts', 'booth_woo_vars', $vars );
 
 }
 add_action( 'init', 'booth_woo_register_scripts' );
@@ -112,6 +104,7 @@ function booth_woo_enqueue_scripts() {
 	wp_enqueue_style( 'booth-woo-style' );
 	wp_add_inline_style( 'booth-woo-style', booth_woo_get_all_customizer_css() );
 	wp_enqueue_script( 'booth-woo-front-scripts' );
+	wp_enqueue_script( 'booth-woo-front-scripts', get_template_directory_uri() . '/assets/build/app.min.js', array(), '1.0.1', true );
 
 }
 add_action( 'wp_enqueue_scripts','booth_woo_enqueue_scripts' );
@@ -122,11 +115,9 @@ add_action( 'wp_enqueue_scripts','booth_woo_enqueue_scripts' );
 function booth_woo_admin_scripts( $hook ) {
 	$theme = wp_get_theme();
 
-	wp_register_style( 'booth-woo-widgets', get_template_directory_uri() . '/css/admin/widgets.min.css', array('booth-woo-repeating-fields','booth-woo-plugin-post-meta','alpha-color-picker',
-	), $theme->get( 'Version' ) );
+	wp_register_style( 'booth-woo-widgets', get_template_directory_uri() . '/css/admin/widgets.min.css', array('booth-woo-repeating-fields','booth-woo-plugin-post-meta'), $theme->get( 'Version' ) );
 
-	wp_register_script( 'booth-woo-widgets', get_template_directory_uri() . '/js/admin/widgets.js', array('jquery','booth-woo-repeating-fields','booth-woo-plugin-post-meta','alpha-color-picker',
-	), $theme->get( 'Version' ), true );
+	wp_register_script( 'booth-woo-widgets', get_template_directory_uri() . '/js/admin/widgets.js', array('jquery','booth-woo-repeating-fields','booth-woo-plugin-post-meta'), $theme->get( 'Version' ), true );
 	$params = array(
 		'ajaxurl'  => admin_url( 'admin-ajax.php' ),
 		'widget_post_type_items_nonce' => wp_create_nonce( 'booth-woo-post-type-items' ),
