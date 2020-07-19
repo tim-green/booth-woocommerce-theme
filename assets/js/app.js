@@ -1,5 +1,4 @@
 /* global booth_woo_vars */
-var $= jQuery
 jQuery(function ($) {
 	'use strict';
 
@@ -127,6 +126,4 @@ jQuery(function ($) {
 		}, false );
     }
     
-}() );
-
-
+}());
