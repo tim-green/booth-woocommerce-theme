@@ -2,17 +2,17 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
-    // jshint: {
-    //   options: {
-    //     jshintrc: '.jshintrc'
-    //   },
-    //   all: [
-    //     'Gruntfile.js',
-    //     'assets/js/**/*.js',
-    //     'assets/js/plugins/**/*.js',
-    //     '!assets/build/app.min.js'
-    //   ]
-    // },
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      all: [
+        'Gruntfile.js',
+        'assets/js/**/*.js',
+        'assets/js/plugins/**/*.js',
+        '!assets/build/app.min.js'
+      ]
+    },
     sass: {
       dist: {
         options: {
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
     uglify: {
       dist: {
         files: {
-          'assets/build/app.min.js': ['assets/js/plugins/**/*.js','assets/js/plugins/*.js','assets/js/**/*.js']
+          'assets/build/app.min.js': ['!assets/js/plugins/alpha-color-picker/*.js','assets/js/plugins/slick/*.js','assets/js/plugins/magnific/*.js','assets/js/plugins/mmenu/jquery.mmenu.oncanvas.js','assets/js/plugins/mmenu/jquery.mmenu.offcanvas.js','assets/js/plugins/mmenu/jquery.mmenu.autoheight.js','assets/js/app.js']
           
         },
         options: {
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
 
   // Load tasks
   grunt.loadNpmTasks('grunt-contrib-clean');
-  //grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
