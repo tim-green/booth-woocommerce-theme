@@ -85,12 +85,28 @@
 	@include media-breakpoint-down(md) {
 		display: none;
 	}
+	
 }
 
 .category-search-input-wrap {
 	height: 100%;
 	flex: auto;
 	position: relative;
+
+	:hover{
+		background:$accent-light-color;
+		transition: ease-out .2s;
+	}
+
+	:focus{
+		background: $white;
+		transition: ease-in .2s;
+	}
+
+	:focus::placeholder {
+		color: transparent;
+		transition: color ease-in .1s;
+	  }
 }
 
 .category-search-input {
