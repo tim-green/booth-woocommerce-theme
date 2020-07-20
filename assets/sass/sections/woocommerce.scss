@@ -388,6 +388,11 @@
 	&:active, &:focus {
 		outline: 0;
 	}
+
+	&:hover{
+		background: $grey;
+		transition: ease-in .5s;
+	}
 }
 
 .woocommerce-product-gallery--columns-3 {
