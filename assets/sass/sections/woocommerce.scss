@@ -1036,6 +1036,10 @@ button {
 	.remove {
 		font-size: 24px;
 		color: $text-color-dark;
+
+		&:hover{
+			color: $red;
+		}
 	}
 
 	.product-thumbnail {
