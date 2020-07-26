@@ -1690,6 +1690,7 @@ button {
 	@include make-row($grid-gutter-widths);
 }
 
+
 .woocommerce-Address {
 	@include media-breakpoint-up(xs) {
 		@include make-col-ready($grid-gutter-widths);
@@ -1710,8 +1711,21 @@ button {
 		right: 0;
 		top: 0;
 		font-size: 12px;
-		color: $text-color;
+		font-weight: bold;
+		color: $white;
+		padding: 2px 9px;
+		border-radius: 5px;
+		background-color: $accent-color;
+		border: 1px solid $accent-light-color;
+
+		&:hover{
+			border: 1px solid $accent-color;
+			background: transparent;
+			color: $text-color;
+			transition: ease-in-out .2s;
+		}
 	}
+	
 }
 
 /* My Account - Login*/
