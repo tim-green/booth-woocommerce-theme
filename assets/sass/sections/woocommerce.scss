@@ -44,6 +44,16 @@
 			}
 		}
 	}
+	input{
+		background: rgba($color: $accent-color, $alpha: .1);
+		border: 1px solid $accent-color;
+		transition: ease-out .2s;
+	}
+
+	input:focus, select:focus{
+		background: $white;
+		transition: ease-in .2s;
+	}
 }
 
 .woocommerce-message,.woocommerce-error,.woocommerce-info,.woocommerce-noreviews {
