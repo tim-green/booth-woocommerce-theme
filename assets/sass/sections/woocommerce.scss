@@ -87,6 +87,11 @@
 		font-size: 0.875em;
 		border: 0;
 
+		&:hover{
+			background: $dark-background;
+			transition: ease-in .2s;
+		}
+
 		&::after {
 			@include font-awesome(\f061);
 			font-size: 0.65em;
