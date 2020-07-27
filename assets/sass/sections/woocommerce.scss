@@ -1096,6 +1096,10 @@ button {
 			margin: 0;
 			justify-content: center;
 
+			input{
+				max-width: 40%;
+			}
+
 			@include media-breakpoint-down(sm) {
 				label {
 					display: none;
