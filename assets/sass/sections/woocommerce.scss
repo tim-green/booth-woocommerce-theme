@@ -1267,14 +1267,15 @@ button {
 	font-size: 12px;
 }
 
+
+.woocommerce-input-wrapper{
+	width: 100%
+}
+
 /* Checkout Page */
 .woocommerce-checkout {
 	.woocommerce-info {
 		margin-bottom: 20px;
-	}
-
-	.woocommerce-input-wrapper{
-		width: 100%
 	}
 
 	.required{
