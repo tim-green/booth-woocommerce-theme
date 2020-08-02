@@ -365,10 +365,15 @@
 	position: relative;
 	border: 1px solid $border-color;
 	border-radius: $border-radius-base;
-
+	transition: ease-out .2s;
 	.no-gutters &,
 	.slick-slide & {
 		margin-bottom: 0;
+	}
+
+	&:hover{
+		border-color: $accent-color;
+		transition: ease-in-out .2s
 	}
 }
 
