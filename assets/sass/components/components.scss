@@ -312,7 +312,15 @@
 .entry-author-desc {
 	border-radius: $border-radius-base;
 	background-color: $grey;
+	border: 1px solid $grey;
 	padding: 25px 30px;
+	width: 100%;
+
+	&:hover{
+		background: $accent-light-color;
+		border: 1px solid $accent-color;
+		transition: ease-in .2s;
+	}
 }
 
 .entry-author-thumbnail {
