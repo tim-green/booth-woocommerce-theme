@@ -54,6 +54,17 @@
 		background: $white;
 		transition: ease-in .2s;
 	}
+
+	input[type="submit"] {
+		background: $accent-color;
+		transition: ease-in .2s;
+	}
+
+	input[type="submit"]:hover {
+		background: rgba($color: $accent-color, $alpha: .1);
+		transition: ease-out .2s;
+		color: $text-color-dark;
+	}
 }
 
 .woocommerce-message,.woocommerce-error,.woocommerce-info,.woocommerce-noreviews {
@@ -849,7 +860,7 @@ button {
 	@include media-breakpoint-down(sm) {
 		display: block;
 	}
-
+	
 	li {
 		display: inline-block;
 		margin: 0 45px 0 0;
