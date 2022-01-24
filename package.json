@@ -33,6 +33,6 @@
     "node-sass": "^7.0.1",
     "pixrem": "^5.0.0",
     "popper.js": "^1.16.1",
-    "postcss": "^8.3.11"
+    "postcss": "^8.4.5"
   }
 }
