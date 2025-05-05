@@ -11,5 +11,3 @@
 <div id="page">
 
 	<?php booth_woo_header(); ?>
-
-	<div id="mobilemenu"><ul></ul></div>

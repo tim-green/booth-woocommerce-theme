@@ -1,5 +1,6 @@
 <?php
 	$info = booth_woo_get_layout_info();
+
 	if ( ! $info['has_sidebar'] ) {
 		return;
 	}
