@@ -17,8 +17,7 @@ if ( ! function_exists( 'booth_woo_cpt_page_update_meta' ) ) :
 
 		// nonce verification is being done inside booth_woo_can_save_meta()
 		if ( isset( $_POST['booth_woo_front_slider_id'] ) ) {
-			update_post_meta( $post_id, 'booth_woo_front_slider_id', booth_woo_sanitize_intval_or_empty( wp_unslash( $_POST['booth_woo_front_slider_id'] ) ) ); 
-			// WPCS: CSRF ok.
+			update_post_meta( $post_id, 'booth_woo_front_slider_id', booth_woo_sanitize_intval_or_empty( wp_unslash( $_POST['booth_woo_front_slider_id'] ) ) ); // WPCS: CSRF ok.
 		}
 	}
 endif;
@@ -56,7 +55,8 @@ if ( ! function_exists( 'booth_woo_add_page_front_page_meta_box' ) ) :
 			</div>
 		</div>
 		<?php
-		booth_woo_bind_metabox_to_page_template( 'booth-woo-tpl-front-page', 'templates/front-page.php', 'booth_woo_front_page_metabox_tpl' );
+
+		booth_woo_bind_metabox_to_page_template( 'booth-woo-tpl-front-page', 'templates/front-page.php' );
 	}
 endif;
 
@@ -91,7 +91,11 @@ function booth_woo_can_save_meta( $post_type ) {
 	return true;
 }
 
-function booth_woo_bind_metabox_to_page_template( $metabox_id, $template_file, $js_var ) {
+function booth_woo_bind_metabox_to_page_template( $metabox_id, $template_file ) {
+	// This is needed for the block editor in order to have a value to work with,
+	// as the template dropdown is not even loaded if the Page Attributes metabox is not expanded.
+	$initial_template = get_page_template_slug( get_queried_object_id() );
+
 	if ( is_string( $template_file ) && ( '' === $template_file || 'default' === $template_file ) ) {
 		$template_file = array( '', 'default' );
 	} elseif ( is_array( $template_file ) && ( in_array( '', $template_file, true ) || in_array( 'default', $template_file, true ) ) ) {
@@ -105,37 +109,54 @@ function booth_woo_bind_metabox_to_page_template( $metabox_id, $template_file, $
 	$css = sprintf( '<style type="text/css">%s { display: none; }</style>', '#' . $metabox_id );
 
 	$js = <<<ENDJS
-    (function($) {
+	(function($) {
 		$('head').append('{$css}');
+		var initialTemplate = '{$initial_template}';
+		var metabox = $( '#{$metabox_id}' );
+		var templates = [ '{$template_file}' ];
 
-	    $(window).load( function() {
-			var template_box = $( '#page_template, .editor-page-attributes__template select' );
-			var {$js_var} = $( '#{$metabox_id}' );
-			if ( template_box.length > 0 ) {
-				var {$js_var}_template = [ '{$template_file}' ];
-		
-				if ( $.inArray( template_box.val(), {$js_var}_template ) > -1 ) {
-					{$js_var}.show();
+		if ( $.inArray( initialTemplate, templates ) > -1 ) {
+			metabox.show();
+		}
+
+
+		var onElementExists = function (selector, callback) {
+			var interval = setInterval(function () {
+				if ($(selector).length > 0) {
+					var element = $(selector).attr('id') === 'page_template' ? $(selector) : $(selector).parent();
+					clearInterval(interval);
+					callback && callback(element);
 				}
-		
-				template_box.change( function() {
-					if ( $.inArray( template_box.val(), {$js_var}_template ) > -1 ) {
-						{$js_var}.show();
+			}, 500 );
+		};
+
+		onElementExists('#page_template, .components-select-control__input option[value="{$initial_template}"]', function ( templateBox ) {
+			var metabox = $( '#{$metabox_id}' );
+			if ( templateBox.length > 0 ) {
+				var templates = [ '{$template_file}' ];
+
+				if ( $.inArray( templateBox.val(), templates ) > -1 ) {
+					metabox.show();
+				}
+
+				templateBox.on( 'change', function() {
+					if ( $.inArray( templateBox.val(), templates ) > -1 ) {
+						metabox.show();
 						if ( typeof google === 'object' && typeof google.maps === 'object' ) {
-							if ( {$js_var}.find( '.gllpLatlonPicker' ).length > 0 ) {
+							if ( metabox.find( '.gllpLatlonPicker' ).length > 0 ) {
 								google.maps.event.trigger( window, 'resize', {} );
 							}
 						}
 					} else {
-						{$js_var}.hide();
+						metabox.hide();
 					}
 				} );
 			} else {
-				{$js_var}.hide();
+				metabox.hide();
 			}
-	    } );
-    })(jQuery);
+		} );
+	})(jQuery);
 ENDJS;
 
-	wp_add_inline_script( 'booth-woo-plugin-post-meta', $js );
+	wp_add_inline_script( 'booth-woo-post-meta', $js );
 }

@@ -271,3 +271,4 @@ function booth_woo_sanitize_pagination_method( $option ) {
 function booth_woo_pagination_method_default() {
 	return apply_filters( 'booth_woo_pagination_method_default', 'numbers' );
 }
+function booth_woo_post_type_listing_get_valid_columns_options( $post_type = false ) {	$array = array(		'min'   => 2,		'max'   => 4,		'range' => range( 2, 4 ),	);	return apply_filters( 'booth_woo_post_type_listing_valid_columns_options', $array, $post_type );}function booth_woo_sanitize_footer_text( $text ) {	return wp_kses( $text, booth_woo_get_allowed_tags( 'guide' ) );}function booth_woo_sanitize_footer_card_icons( $text ) {	$icons = booth_woo_get_card_icons_array( $text );	$text  = implode( ',' . PHP_EOL, $icons );	return $text;}

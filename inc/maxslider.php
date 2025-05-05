@@ -32,6 +32,7 @@ function booth_woo_front_page_replace_maxslider_slider_classes( $classes, $slide
 	return $new_classes;
 }
 
+
 add_filter( 'maxslider_default_slide_values', 'booth_woo_change_maxslider_default_slide_values' );
 function booth_woo_change_maxslider_default_slide_values( $defaults ) {
 	$defaults['content_align']  = 'maxslider-align-left';
@@ -39,3 +40,22 @@ function booth_woo_change_maxslider_default_slide_values( $defaults ) {
 
 	return $defaults;
 }
+
+add_filter( 'maxslider_additional_templates', 'booth_woo_maxslider_additional_templates' );
+/**
+ * Appends the theme's MaxSlider templates to the list of available templates.
+ *
+ * @since 1.6.0
+ *
+ * @param array $templates
+ *
+ * @return array
+ */
+function booth_woo_maxslider_additional_templates( $templates ) {
+	return array_merge( $templates, array(
+		'home' => array(
+			'label' => _x( 'Home', 'maxslider template', 'booth-woo' ),
+		),
+	) );
+}
+

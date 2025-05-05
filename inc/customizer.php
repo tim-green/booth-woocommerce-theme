@@ -147,11 +147,12 @@ function booth_woo_customize_register( $wp_customize ) {
 		'panel'    => 'theme_titles',
 		'priority' => 20,
 	) );
-
 	require_once get_theme_file_path( 'inc/customizer/options/theme-titles-post.php' );
 
 
+	//
 	// Other
+	//
 	$wp_customize->add_panel( 'theme_other', array(
 		'title'                    => esc_html_x( 'Other', 'customizer section title', 'booth-woo' ),
 		'description'              => esc_html__( 'Other options affecting the whole site.', 'booth-woo' ),
@@ -164,26 +165,25 @@ function booth_woo_customize_register( $wp_customize ) {
 		'panel'    => 'theme_other',
 		'priority' => 20,
 	) );
-
 	require_once get_theme_file_path( 'inc/customizer/options/theme-other-google-fonts.php' );
 
+
+	//
 	// Site identity
+	//
 	require_once get_theme_file_path( 'inc/customizer/options/site-identity.php' );
 
 }
 
-add_action( 'customize_register', 'booth_woo_customize_register_custom_controls', 9 );
 
-/*
+
+add_action( 'customize_register', 'booth_woo_customize_register_custom_controls', 9 );
+/**
  * Registers custom Customizer controls.
  *
  * @param WP_Customize_Manager $wp_customize Reference to the customizer's manager object.
  */
 function booth_woo_customize_register_custom_controls( $wp_customize ) {
-	require_once get_template_directory() . '/inc/customizer/controls/static-text/static-text.php';
-
-	require_once get_template_directory() . '/inc/customizer/controls/alpha-color-picker/alpha-color-picker.php';
-
 	require_once get_template_directory() . '/inc/customizer/controls/section-pro/section-pro.php';
 }
 
@@ -204,10 +204,6 @@ add_action( 'customize_controls_enqueue_scripts', 'booth_woo_customize_controls_
 function booth_woo_customize_controls_js() {
 	$theme = wp_get_theme();
 
-	wp_enqueue_style( 'alpha-color-picker-customizer', get_template_directory_uri() . '/inc/customizer/controls/alpha-color-picker/alpha-color-picker.css', array('wp-color-picker',), '1.0.0' );
-
-	wp_enqueue_script( 'alpha-color-picker-customizer', get_template_directory_uri() . '/inc/customizer/controls/alpha-color-picker/alpha-color-picker.js', array('jquery','wp-color-picker',), '1.0.0', true );
-
 	wp_enqueue_script( 'booth-woo-customizer-section-pro', get_template_directory_uri() . '/inc/customizer/controls/section-pro/customize-controls.js', array( 'customize-controls' ), $theme->get( 'Version' ), true );
 	wp_enqueue_style( 'booth-woo-customizer-section-pro', get_template_directory_uri() . '/inc/customizer/controls/section-pro/customize-controls.css', array(), $theme->get( 'Version' ) );
 }
@@ -221,5 +217,4 @@ require_once get_theme_file_path( '/inc/customizer/partial-callbacks.php' );
 /*
  * Customizer generated styles.
  */
-
 require_once get_theme_file_path( '/inc/customizer/generated-styles.php' );
