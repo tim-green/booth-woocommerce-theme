@@ -2,7 +2,7 @@
 <div class="item">
 	<div class="item-thumb">
 		<a href="<?php the_permalink(); ?>">
-			<?php the_post_thumbnail('booth_woo_item'); ?>
+			<?php the_post_thumbnail( 'booth_woo_item' ); ?>
 		</a>
 	</div>
 

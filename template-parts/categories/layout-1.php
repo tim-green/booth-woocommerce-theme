@@ -2,7 +2,7 @@
 // We need at least this many categories selected for the layout to work correctly.
 $required_terms = 2;
 
-/* @var $term_ids array */
+/** @var $term_ids array */
 // Assume we were passed an array of term IDs.
 if ( empty( $term_ids ) || ! is_array( $term_ids ) || count( $term_ids ) < $required_terms ) {
 	return;

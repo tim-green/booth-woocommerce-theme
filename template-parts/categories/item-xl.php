@@ -1,5 +1,5 @@
 <?php
-/* @var $term WP_Term */
+/** @var $term WP_Term */
 // Assume we were passed a term object.
 if ( empty( $term ) || ! is_object( $term ) ) {
 	return;

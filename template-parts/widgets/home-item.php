@@ -1,5 +1,4 @@
 <?php $subtitle = get_post_meta( get_the_ID(), 'subtitle', true ); ?>
-
 <div class="item">
 	<div class="item-thumb">
 		<a href="<?php the_permalink(); ?>">

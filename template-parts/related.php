@@ -24,4 +24,6 @@
 			</div>
 		</div>
 	<?php endif;
-	do_action( "booth_woo_after_related_{$post_type}", $related, $post_type, $title );?>
+
+	do_action( "booth_woo_after_related_{$post_type}", $related, $post_type, $title );
+
